@@ -101,13 +101,13 @@ public class ListenerService extends WearableListenerService {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
             if (Objects.equals(message, "stop")) {//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, ServerService.class); //Should be a service?
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("MESSAGE", message);
                 startActivity(intent);
             }
             else if (Objects.equals(message, "photo")){//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, ServerService.class);  //Should be a service?
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("MESSAGE", message);
                 startActivity(intent);

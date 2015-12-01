@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WareComm</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_first_page">WareComm</string>
+    <string name="title_activity_register_page">WareComm</string>
+    <string name="title_activity_confirm_page">WareComm</string>
+    <string name="title_activity_home_page">WareComm</string>
 </resources>
