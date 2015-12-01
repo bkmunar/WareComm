@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">WareComm</string>
     <string name="hello_world">Hello World!</string>
+    <string name="title_activity_check_in">CheckIn</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_check_out">CheckOut</string>
+    <string name="title_activity_broadcast_codes">BroadcastCodes</string>
+    <string name="title_activity_broadcast_ping">BroadcastPing</string>
+    <string name="title_activity_broadcast_notification">BroadcastNotification</string>
+    <string name="title_activity_deparment_list">DeparmentList</string>
+    <string name="title_activity_department_ping">DepartmentPing</string>
+    <string name="title_activity_request_notification">requestNotification</string>
+    <string name="title_activity_confirmed_notification">ConfirmedNotification</string>
+    <string name="title_activity_create_message">CreateMessage</string>
+    <string name="title_activity_create_reply">CreateReply</string>
+    <string name="title_activity_individual_list">IndividualList</string>
+    <string name="title_activity_individual_ping">IndividualPing</string>
+    <string name="title_activity_individual_request">IndividualRequest</string>
+    <string name="title_activity_reply_notification">ReplyNotification</string>
+    <string name="title_activity_reply_ping">ReplyPing</string>
 </resources>
