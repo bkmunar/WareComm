@@ -1,10 +1,13 @@
 package com.example.bmunar.warecomm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ReplyNotification extends Activity {
 
@@ -14,7 +17,7 @@ public class ReplyNotification extends Activity {
         setContentView(R.layout.activity_reply_notification);
 
         ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
-        iv.setImageResource(R.drawable.requestnotification);
+        iv.setImageResource(R.drawable.replynotification);
     }
 
     @Override
@@ -37,5 +40,12 @@ public class ReplyNotification extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void returnBack(View view){
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
+        Intent intent = new Intent(this, IndividualList.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

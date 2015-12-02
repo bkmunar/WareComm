@@ -71,6 +71,8 @@ public class ListenerService extends WearableListenerService {
     private void sendMessage( final String path, final String text ) {
         Log.d(TAG, "sendMessage");
 
+        Log.d("GOOGLECLIENT", String.valueOf(mApiClient.isConnected()));
+
         new Thread( new Runnable() {
             @Override
             public void run() {
@@ -92,8 +94,8 @@ public class ListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-//        Log.d(TAG, "onMessageReceived");
-//
+        Log.d(TAG, "onMessageReceived");
+
 //        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
 //            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 //            Log.d(TAG, message);

@@ -43,9 +43,14 @@ public class IndividualPing extends Activity {
     }
 
     public void individualPing(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, IndividualList.class);
+//        Intent toServer = new Intent(this, ListenerService.class);
+//        toServer.putExtra("message", "individual");
+//        startService(toServer);
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, IndividualRequest.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
     }
 }

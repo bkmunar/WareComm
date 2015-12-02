@@ -17,6 +17,14 @@ public class FirstPage extends AppCompatActivity {
 
         ImageView iv = (ImageView)findViewById(R.id.firstPageImage);
         iv.setImageResource(R.drawable.mobile1);
+
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        if (extras==null) {
+//            //Start QuakeService - LISTEN for quakes - only on run of Main Activity
+//            Intent i = new Intent(this, ListenerService.class);
+//            startService(i);
+//        }
     }
 
     @Override

@@ -18,6 +18,14 @@ public class CheckIn extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.checkinImage);
         iv.setImageResource(R.drawable.checkin);
+
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        if (extras==null) {
+//            //Start QuakeService - LISTEN for quakes - only on run of Main Activity
+//            Intent i = new Intent(this, ListenerService.class);
+//            startService(i);
+//        }
     }
 
     @Override

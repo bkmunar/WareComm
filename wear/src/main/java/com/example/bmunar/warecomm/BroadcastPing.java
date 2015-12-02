@@ -43,9 +43,16 @@ public class BroadcastPing extends Activity {
     }
 
     public void broadcastPing(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, BroadcastCodes.class);
+//        Intent toServer = new Intent(this, ListenerService.class);
+//        toServer.putExtra("message", "broadcast");
+//        startService(toServer);
+//
+//        Log.d("***********","*************");
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BroadcastNotification.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
     }
 }

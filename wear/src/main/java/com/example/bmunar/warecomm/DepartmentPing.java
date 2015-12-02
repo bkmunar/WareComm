@@ -43,9 +43,14 @@ public class DepartmentPing extends Activity {
     }
 
     public void departmentPing(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, DepartmentList.class);
+//        Intent toServer = new Intent(this, ListenerService.class);
+//        toServer.putExtra("message", "department");
+//        startService(toServer);
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, requestNotification.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+
     }
 }

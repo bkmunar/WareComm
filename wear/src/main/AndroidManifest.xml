@@ -5,6 +5,7 @@
     <uses-feature android:name="android.hardware.type.watch" />
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -94,6 +95,10 @@
             android:name=".ReplyPing"
             android:label="@string/title_activity_reply_ping" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBvGyIwflGxFl2m31QMUpmIjnOMKBY_37E"/>
     </application>
 
 </manifest>

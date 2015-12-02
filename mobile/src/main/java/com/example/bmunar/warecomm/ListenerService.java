@@ -100,17 +100,23 @@ public class ListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-            if (Objects.equals(message, "stop")) {//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, ServerService.class); //Should be a service?
+            if (Objects.equals(message, "broadcast")) {//EDIT THIS FOR CORRECT MESSAGE
+                Intent intent = new Intent(this, ServerService.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("MESSAGE", message);
-                startActivity(intent);
+                startService(intent);
             }
-            else if (Objects.equals(message, "photo")){//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, ServerService.class);  //Should be a service?
+            else if (Objects.equals(message, "department")){//EDIT THIS FOR CORRECT MESSAGE
+                Intent intent = new Intent(this, ServerService.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("MESSAGE", message);
-                startActivity(intent);
+                startService(intent);
+            }
+            else if (Objects.equals(message, "individual")){//EDIT THIS FOR CORRECT MESSAGE
+                Intent intent = new Intent(this, ServerService.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("MESSAGE", message);
+                startService(intent);
             }
         } else {
             super.onMessageReceived( messageEvent );
