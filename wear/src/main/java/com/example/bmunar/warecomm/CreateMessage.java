@@ -1,9 +1,11 @@
 package com.example.bmunar.warecomm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 public class CreateMessage extends Activity {
@@ -37,5 +39,11 @@ public class CreateMessage extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createMessage(View view){
+        Intent intent = new Intent(this, IndividualPing.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

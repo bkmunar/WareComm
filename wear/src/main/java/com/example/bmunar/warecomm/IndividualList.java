@@ -1,9 +1,11 @@
 package com.example.bmunar.warecomm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 public class IndividualList extends Activity {
@@ -37,5 +39,11 @@ public class IndividualList extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void selectIndividual(View view){
+        Intent intent = new Intent(this, CreateMessage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
