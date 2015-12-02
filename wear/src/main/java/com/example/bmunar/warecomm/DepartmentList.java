@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class BroadcastCodes extends Activity {
+public class DepartmentList extends Activity {
 
     private float x1,x2;
     static final int MIN_DISTANCE = 5;
@@ -18,16 +18,16 @@ public class BroadcastCodes extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_broadcast_codes);
+        setContentView(R.layout.activity_deparment_list);
 
-        ImageView iv = (ImageView)findViewById(R.id.broadcastCodesImage);
-        iv.setImageResource(R.drawable.broadcastcodes);
+        ImageView iv = (ImageView)findViewById(R.id.departmentListImage);
+        iv.setImageResource(R.drawable.departmentlist);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_broadcast_codes, menu);
+        getMenuInflater().inflate(R.menu.menu_deparment_list, menu);
         return true;
     }
 
@@ -64,7 +64,7 @@ public class BroadcastCodes extends Activity {
                     if (x2 < x1)
                     {
                         Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
-                        Intent intent = new Intent(this, DepartmentList.class);
+                        Intent intent = new Intent(this, IndividualList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
@@ -73,7 +73,7 @@ public class BroadcastCodes extends Activity {
                     else
                     {
                         Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
-                        Intent intent = new Intent(this, CheckOut.class);
+                        Intent intent = new Intent(this, BroadcastCodes.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
@@ -83,9 +83,9 @@ public class BroadcastCodes extends Activity {
         return super.onTouchEvent(event);
     }
 
-    public void broadcastCode(View view){
+    public void selectDepartment(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, BroadcastPing.class);
+        Intent intent = new Intent(this, DepartmentPing.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

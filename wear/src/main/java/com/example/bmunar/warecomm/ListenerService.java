@@ -12,9 +12,6 @@ import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
-
 /**
  * Updated by akester on 11/28/15.
  * Job of class is to send/receive message to/from mobile
@@ -95,26 +92,26 @@ public class ListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        Log.d(TAG, "onMessageReceived");
-
-        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
-            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Log.d(TAG, message);
-            if (Objects.equals(message, "stop")) {//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("MESSAGE", message);
-                startActivity(intent);
-            }
-            else if (Objects.equals(message, "photo")){//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("MESSAGE", message);
-                startActivity(intent);
-            }
-        } else {
+//        Log.d(TAG, "onMessageReceived");
+//
+//        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
+//            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+//            Log.d(TAG, message);
+//            if (Objects.equals(message, "stop")) {//EDIT THIS FOR CORRECT MESSAGE
+//                Intent intent = new Intent(this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("MESSAGE", message);
+//                startActivity(intent);
+//            }
+//            else if (Objects.equals(message, "photo")){//EDIT THIS FOR CORRECT MESSAGE
+//                Intent intent = new Intent(this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("MESSAGE", message);
+//                startActivity(intent);
+//            }
+//        } else {
             super.onMessageReceived( messageEvent );
-        }
+//        }
 
     }
 }
