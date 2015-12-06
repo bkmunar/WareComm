@@ -21,15 +21,19 @@ import java.util.Objects;
  */
 public class ListenerService extends WearableListenerService {
     private static final String TAG = "ListenerService";
-    private String message;
-    private static final String START_ACTIVITY = "/start_activity";
     private GoogleApiClient mApiClient;
+    private static final String START_ACTIVITY_QUAKE = "/start_activity_quake"; //CHANGE
+    private static final String START_ACTIVITY_PHOTO = "/start_activity_photo"; //CHANGE
+    private static final String START_ACTIVITY = "/start_activity";
+    private String message;
+    private String sender;
+
 
     @Override
     public void onCreate() {
         Log.d(TAG, "onCreate");
-
         super.onCreate();
+        //initialize the googleAPIClient for message passing
         mApiClient = new GoogleApiClient.Builder( this )
                 .addApi( Wearable.API )
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
@@ -51,6 +55,7 @@ public class ListenerService extends WearableListenerService {
         Bundle extras = intent.getExtras();
         if (extras!=null) {
             message = intent.getStringExtra("message");
+            sender = intent.getStringExtra("sender");
             Log.d(TAG, message);
         }
         createAndStartTimer();
@@ -63,16 +68,22 @@ public class ListenerService extends WearableListenerService {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, message);
                 mApiClient.connect();
-                sendMessage(START_ACTIVITY, message);
-
+                //CHANGE THESE FOR SPECIFIC MESSAGES
+                if (Objects.equals(sender, "LocationService")) {//THIS WONT DO ANYTHING
+                    sendMessage(START_ACTIVITY_QUAKE, message);
+                }else if (Objects.equals(sender, "PhotoActivity")) {//THIS WONT DO ANYTHING
+                    sendMessage(START_ACTIVITY_PHOTO, message);
+                }else {
+                    sendMessage(START_ACTIVITY, message);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
+                }
             }
         }).start();
     }
 
     private void sendMessage( final String path, final String text ) {
         Log.d(TAG, "sendMessage");
+        Log.d("GOOGLECLIENT", String.valueOf(mApiClient.isConnected()));
 
         new Thread( new Runnable() {
             @Override
@@ -88,7 +99,6 @@ public class ListenerService extends WearableListenerService {
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy");
         super.onDestroy();
         mApiClient.disconnect();
     }
@@ -100,27 +110,29 @@ public class ListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-            if (Objects.equals(message, "broadcast")) {//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, ServerService.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("MESSAGE", message);
-                startService(intent);
-            }
-            else if (Objects.equals(message, "department")){//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, ServerService.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("MESSAGE", message);
-                startService(intent);
-            }
-            else if (Objects.equals(message, "individual")){//EDIT THIS FOR CORRECT MESSAGE
-                Intent intent = new Intent(this, ServerService.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("MESSAGE", message);
-                startService(intent);
-            }
+
+            Intent intent = new Intent(this, RegisterPage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("message", message);
+            startActivity(intent);
+
+//            if (Objects.equals(message, "stop")) {
+//                Intent intent = new Intent(this, HomePage.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("MESSAGE", message);
+//                startActivity(intent);
+//            }
+//            else if (Objects.equals(message, "photo")){
+//                Intent intent = new Intent(this, HomePage.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("MESSAGE", message);
+//                startActivity(intent);
+//            }
         } else {
             super.onMessageReceived( messageEvent );
         }
 
     }
+
+
 }
