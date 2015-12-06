@@ -2,7 +2,6 @@ package com.example.bmunar.warecomm;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -11,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -37,56 +37,46 @@ public class ServerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
-        getData();
+        createAndStartEarthquakeService();
         return START_STICKY;
     }
 
-    //Listen for quakes on interval
-    protected void getData() {
-        Log.d(TAG, "getData");
-
-        CountDownTimer timer = new CountDownTimer(INTERVAL, SECOND) {
-            public void onTick(long millisUntilFinished) { }
-            public void onFinish() {
-                Log.d(TAG, "onFinish");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        StringBuilder result = new StringBuilder();
+    private void createAndStartEarthquakeService() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Log.e("TAG", "Starting Earthquake URL construction");
+                        // Construct URL to query Earthquake data
+                        URL url = new URL("http://162.243.156.197:3002/get");
+                        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                         try {
-                            String quakeURL = "http://162.243.156.197:3001/get";
-                            Log.d(TAG, quakeURL);
+                            Log.e("asdf", "got in");
 
-                            URL url = new URL(quakeURL);
-                            urlConnection = (HttpURLConnection) url.openConnection();
                             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                            String line;
-                            while ((line = reader.readLine()) != null) {
-                                result.append(line);
-                            }
+                            // What if JSON object is null? The InputStream is null?
+                            JSONObject currentQuery = new JSONObject(readStream(in));
+                            Log.e("current query", currentQuery.toString());
 
-                        }catch( Exception e) {
-                            e.printStackTrace();
-                        }
-                        finally {
+                        } finally {
                             urlConnection.disconnect();
+                            Log.e("asdf", "got out");
                         }
-                        try {
-                            onPostExecute(result.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (Exception e) {
+                        // do nothing for now
+                        Log.e("asdf", "some exception");
                     }
-                }).start();
 
-                // Start the timer again
-                getData();
+                    try {
+                        // Let the Thread sleep for 15 seconds so that the Service doesn't do unnecessary work
+                        Thread.sleep(15000);
+                    } catch (Exception e){
+                        // Do nothing.
+                    }
+                }
             }
-        };
-
-        timer.start();
+        }).start();
     }
 
     //Refactor sloppy JSON
@@ -100,5 +90,28 @@ public class ServerService extends Service {
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
+    }
+
+    // Util function for Services and Async Tasks
+    public static String readStream(InputStream is) {
+        // Pulled implementation from Stack Overflow
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            Log.e("IOException", e.toString());
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                Log.e("IOException", e.toString());
+            }
+        }
+        return sb.toString();
     }
 }
