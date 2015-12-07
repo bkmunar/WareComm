@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class DepartmentList extends Activity {
+    private static final String TAG = "DepartmentList";
 
     private float x1,x2;
     static final int MIN_DISTANCE = 5;
@@ -105,15 +107,17 @@ public class DepartmentList extends Activity {
     }
 
     public void selectDepartment(View view){
-//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-//        Intent intent = new Intent(this, DepartmentPing.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
-        Intent anotherIntent = new Intent(this, ListenerService.class);
+        Log.d(TAG, "selectDepartment");
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DepartmentPing.class);
+
         Bundle extras = new Bundle();
         extras.putString("features", "dpt"); //all dpt indv
-        extras.putString("dpt", ((Button) view).getText().toString()); //appliances, bath, electrical, flooring
-        anotherIntent.putExtras(extras);
-        startService(anotherIntent);
+        extras.putString("dpt", ((Button) view).getText().toString());
+        intent.putExtras(extras);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

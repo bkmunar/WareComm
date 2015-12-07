@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 
 /**
  * Updated by akester on 11/28/15.
@@ -27,6 +28,7 @@ public class ServerService extends Service {
 
     private String features;
     private String code;
+    private String dpt;
 
     private static final int INTERVAL = 10000;
     private static final int SECOND = 1000;
@@ -45,9 +47,14 @@ public class ServerService extends Service {
         Bundle extras = intent.getExtras();
         if (extras!=null) {
             features = intent.getStringExtra("features");
-            code = intent.getStringExtra("code");
             Log.d(TAG, features);
-            Log.d(TAG, code);
+            if (Objects.equals(features, "all")) {
+                code = intent.getStringExtra("code");
+                Log.d(TAG, code);
+            } else if (Objects.equals(features, "dpt")) {
+                dpt = intent.getStringExtra("dpt");
+                Log.d(TAG, dpt);
+            }
         }
 
         createAndStartEarthquakeService();

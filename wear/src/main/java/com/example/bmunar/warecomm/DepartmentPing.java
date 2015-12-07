@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class DepartmentPing extends Activity {
+    private static final String TAG = "DepartmentPing";
+    private String features;
+    private String dpt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,16 @@ public class DepartmentPing extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
         iv.setImageResource(R.drawable.departmentping);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            dpt = intent.getStringExtra("dpt");
+            Log.d(TAG, features);
+            Log.d(TAG, dpt);
+        }
     }
 
     @Override
@@ -43,14 +57,24 @@ public class DepartmentPing extends Activity {
     }
 
     public void departmentPing(View view){
-//        Intent toServer = new Intent(this, ListenerService.class);
-//        toServer.putExtra("message", "department");
-//        startService(toServer);
-
+        Log.d(TAG, "broadcastPing");
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, requestNotification.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+
+        Intent intent = new Intent(this, ListenerService.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", features); //all dpt indv
+        extras.putString("dpt", dpt); //adam black blue brown
+        intent.putExtras(extras);
+        Log.d(TAG, features);
+        Log.d(TAG, dpt);
+
+        startService(intent);
+
+          //CODE TO FORCE DEMO FOR NOTIFICATION
+//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(this, requestNotification.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
 
     }
 }

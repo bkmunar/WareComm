@@ -27,6 +27,7 @@ public class ListenerService extends WearableListenerService {
     private static final String SEND_MESSAGE_INDV = "/send_message_indv";
     private String features;
     private String code;
+    private String dpt;
 
 
     @Override
@@ -55,9 +56,14 @@ public class ListenerService extends WearableListenerService {
         Bundle extras = intent.getExtras();
         if (extras!=null) {
             features = intent.getStringExtra("features");
-            code = intent.getStringExtra("code");
             Log.d(TAG, features);
-            Log.d(TAG, code);
+            if (Objects.equals(features, "all")) {
+                code = intent.getStringExtra("code");
+                Log.d(TAG, code);
+            } else if (Objects.equals(features, "dpt")) {
+                dpt = intent.getStringExtra("dpt");
+                Log.d(TAG, dpt);
+            }
         }
         createAndStartTimer();
         return START_STICKY;
@@ -73,8 +79,8 @@ public class ListenerService extends WearableListenerService {
                 //CHANGE THESE FOR SPECIFIC MESSAGES
                 if (Objects.equals(features, "all")) {//THIS WONT DO ANYTHING
                     sendMessage(SEND_MESSAGE_ALL, code);
-                }else if (Objects.equals(features, "PhotoActivity")) {//THIS WONT DO ANYTHING
-                    sendMessage(SEND_MESSAGE_DPT, code);
+                }else if (Objects.equals(features, "dpt")) {//THIS WONT DO ANYTHING
+                    sendMessage(SEND_MESSAGE_DPT, dpt);
                 }else {
                     sendMessage(SEND_MESSAGE_INDV, code);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
                 }

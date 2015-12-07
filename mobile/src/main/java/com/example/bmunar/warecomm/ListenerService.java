@@ -116,17 +116,21 @@ public class ListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-
             Intent intent = new Intent(this, ServerService.class);
             Bundle extras = new Bundle();
             extras.putString("features", "all"); //all dpt indv
             extras.putString("code", message); //adam black blue brown
             intent.putExtras(extras);
-
             startService(intent);
-
-
-
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT ) ){
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, ServerService.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "dpt"); //all dpt indv
+            extras.putString("dpt", message);
+            intent.putExtras(extras);
+            startService(intent);
         } else {
             super.onMessageReceived( messageEvent );
         }
