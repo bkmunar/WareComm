@@ -10,6 +10,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/departmentListImage"
-        android:layout_gravity="center"
-        android:onClick="selectDepartment"/>
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Appliances"
+        android:onClick="selectDepartment"
+        android:id="@+id/Appliances"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Bath"
+        android:onClick="selectDepartment"
+        android:id="@+id/Bath"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Electrical"
+        android:onClick="selectDepartment"
+        android:id="@+id/Electrical"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Flooring"
+        android:onClick="selectDepartment"
+        android:id="@+id/Flooring"/>
 </FrameLayout>

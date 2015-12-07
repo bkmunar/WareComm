@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,6 +23,26 @@ public class DepartmentList extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.departmentListImage);
         iv.setImageResource(R.drawable.departmentlist);
+
+        Button button1 = (Button)findViewById(R.id.Appliances);
+        button1.setX(35);
+        button1.setY(55);
+//        button1.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button2 = (Button)findViewById(R.id.Bath);
+        button2.setX(135);
+        button2.setY(55);
+//        button2.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button3 = (Button)findViewById(R.id.Electrical);
+        button3.setX(35);
+        button3.setY(155);
+//        button3.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button4 = (Button)findViewById(R.id.Flooring);
+        button4.setX(135);
+        button4.setY(155);
+//        button4.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -84,9 +105,15 @@ public class DepartmentList extends Activity {
     }
 
     public void selectDepartment(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, DepartmentPing.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
+//        Intent intent = new Intent(this, DepartmentPing.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+        Intent anotherIntent = new Intent(this, ListenerService.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", "dpt"); //all dpt indv
+        extras.putString("dpt", ((Button) view).getText().toString()); //appliances, bath, electrical, flooring
+        anotherIntent.putExtras(extras);
+        startService(anotherIntent);
     }
 }
