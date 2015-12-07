@@ -49,7 +49,7 @@ public class ServerService extends Service {
             Log.d(TAG, features);
             Log.d(TAG, code);
         }
-        
+
         createAndStartEarthquakeService();
         return START_STICKY;
     }
