@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class BroadcastCodes extends Activity {
 
-//    private float x1,x2;
-//    static final int MIN_DISTANCE = 5;
+    private float x1,x2;
+    static final int MIN_DISTANCE = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,42 +68,42 @@ public class BroadcastCodes extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event)
-//    {
-//        switch(event.getAction())
-//        {
-//            case MotionEvent.ACTION_DOWN:
-//                x1 = event.getX();
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                x2 = event.getX();
-//                float deltaX = x2 - x1;
-//
-//                if (Math.abs(deltaX) > MIN_DISTANCE)
-//                {
-//                    // Left to Right swipe action
-//                    if (x2 < x1)
-//                    {
-//                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
-//                        Intent intent = new Intent(this, DepartmentList.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                    }
-//
-//                    // Right to left swipe action
-//                    else
-//                    {
-//                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
-//                        Intent intent = new Intent(this, CheckOut.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                    }
-//                }
-//                break;
-//        }
-//        return super.onTouchEvent(event);
-//    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+                    // Left to Right swipe action
+                    if (x2 < x1)
+                    {
+                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
+                        Intent intent = new Intent(this, DepartmentList.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+
+                    // Right to left swipe action
+                    else
+                    {
+                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
+                        Intent intent = new Intent(this, CheckOut.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 
     public void broadcastCode(View view){
 //        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
