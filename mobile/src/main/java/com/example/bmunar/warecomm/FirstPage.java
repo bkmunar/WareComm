@@ -21,9 +21,10 @@ public class FirstPage extends AppCompatActivity {
         ImageView iv = (ImageView)findViewById(R.id.firstPageImage);
         iv.setImageResource(R.drawable.mobile1);
 
-//        //TESTING LISTENER SERVICE
-//        Intent i = new Intent(this, ServerService.class);
-//        startService(i);
+        //TESTING LISTENER SERVICE
+        Intent i = new Intent(this, TestActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
 
     }
 

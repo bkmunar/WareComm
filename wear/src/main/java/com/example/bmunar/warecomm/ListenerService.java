@@ -128,7 +128,7 @@ public class ListenerService extends WearableListenerService {
             extras.putString("features", "all"); //all dpt indv
             extras.putString("code", message); //adam black blue brown
             intent.putExtras(extras);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
@@ -138,7 +138,7 @@ public class ListenerService extends WearableListenerService {
             extras.putString("features", "dpt"); //all dpt indv
             extras.putString("dpt", message); //appliances, bath, electrical, flooring
             intent.putExtras(extras);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
@@ -148,7 +148,7 @@ public class ListenerService extends WearableListenerService {
             extras.putString("features", "indv"); //all dpt indv
             extras.putString("indv", message); //dana, jackson
             intent.putExtras(extras);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         } else {
             super.onMessageReceived( messageEvent );
