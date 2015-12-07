@@ -29,6 +29,7 @@ public class ServerService extends Service {
     private String features;
     private String code;
     private String dpt;
+    private String indv;
 
     private static final int INTERVAL = 10000;
     private static final int SECOND = 1000;
@@ -46,14 +47,17 @@ public class ServerService extends Service {
 
         Bundle extras = intent.getExtras();
         if (extras!=null) {
-            features = intent.getStringExtra("features");
+            features = intent.getStringExtra("features"); //all dpt indv
             Log.d(TAG, features);
             if (Objects.equals(features, "all")) {
-                code = intent.getStringExtra("code");
+                code = intent.getStringExtra("code"); //adam black blue brown
                 Log.d(TAG, code);
             } else if (Objects.equals(features, "dpt")) {
-                dpt = intent.getStringExtra("dpt");
+                dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
                 Log.d(TAG, dpt);
+            }else if (Objects.equals(features, "indv")){
+                indv = intent.getStringExtra("indv"); //dana, jackson
+                Log.d(TAG, indv);
             }
         }
 

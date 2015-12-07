@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class CreateMessage extends Activity {
+    private static final String TAG = "CreateMessage";
+    private String features;
+    private String indv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,18 @@ public class CreateMessage extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.createMessageImage);
         iv.setImageResource(R.drawable.createmessage);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            indv = intent.getStringExtra("indv");
+            Log.d(TAG, features);
+            Log.d(TAG, indv);
+        }
+
+
     }
 
     @Override
@@ -43,8 +59,15 @@ public class CreateMessage extends Activity {
     }
 
     public void createMessage(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
+        Log.d(TAG, "createMessage");
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, IndividualPing.class);
+
+        Bundle extras = new Bundle();
+        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("indv", "dana"); //dana, jackson
+        intent.putExtras(extras);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

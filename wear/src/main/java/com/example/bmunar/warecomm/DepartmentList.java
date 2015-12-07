@@ -114,7 +114,7 @@ public class DepartmentList extends Activity {
 
         Bundle extras = new Bundle();
         extras.putString("features", "dpt"); //all dpt indv
-        extras.putString("dpt", ((Button) view).getText().toString());
+        extras.putString("dpt", ((Button) view).getText().toString()); //appliances, bath, electrical, flooring
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

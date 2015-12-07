@@ -63,7 +63,7 @@ public class DepartmentPing extends Activity {
         Intent intent = new Intent(this, ListenerService.class);
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
-        extras.putString("dpt", dpt); //adam black blue brown
+        extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
         intent.putExtras(extras);
         Log.d(TAG, features);
         Log.d(TAG, dpt);

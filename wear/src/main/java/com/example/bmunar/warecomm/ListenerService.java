@@ -28,6 +28,7 @@ public class ListenerService extends WearableListenerService {
     private String features;
     private String code;
     private String dpt;
+    private String indv;
 
 
     @Override
@@ -63,6 +64,9 @@ public class ListenerService extends WearableListenerService {
             } else if (Objects.equals(features, "dpt")) {
                 dpt = intent.getStringExtra("dpt");
                 Log.d(TAG, dpt);
+            } else if (Objects.equals(features, "indv")){
+                indv = intent.getStringExtra("indv");
+                Log.d(TAG, indv);
             }
         }
         createAndStartTimer();
@@ -82,7 +86,7 @@ public class ListenerService extends WearableListenerService {
                 }else if (Objects.equals(features, "dpt")) {//THIS WONT DO ANYTHING
                     sendMessage(SEND_MESSAGE_DPT, dpt);
                 }else {
-                    sendMessage(SEND_MESSAGE_INDV, code);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
+                    sendMessage(SEND_MESSAGE_INDV, indv);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
                 }
             }
         }).start();
