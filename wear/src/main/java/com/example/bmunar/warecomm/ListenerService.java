@@ -22,11 +22,11 @@ import java.util.Objects;
 public class ListenerService extends WearableListenerService {
     private static final String TAG = "ListenerService";
     private GoogleApiClient mApiClient;
-    private static final String START_ACTIVITY_QUAKE = "/start_activity_quake"; //CHANGE
-    private static final String START_ACTIVITY_PHOTO = "/start_activity_photo"; //CHANGE
-    private static final String START_ACTIVITY = "/start_activity";
-    private String message;
-    private String sender;
+    private static final String SEND_MESSAGE_ALL = "/send_message_all";
+    private static final String SEND_MESSAGE_DPT = "/send_message_dpt";
+    private static final String SEND_MESSAGE_INDV = "/send_message_indv";
+    private String features;
+    private String code;
 
 
     @Override
@@ -54,9 +54,10 @@ public class ListenerService extends WearableListenerService {
 
         Bundle extras = intent.getExtras();
         if (extras!=null) {
-            message = intent.getStringExtra("message");
-            sender = intent.getStringExtra("sender");
-            Log.d(TAG, message);
+            features = intent.getStringExtra("features");
+            code = intent.getStringExtra("code");
+            Log.d(TAG, features);
+            Log.d(TAG, code);
         }
         createAndStartTimer();
         return START_STICKY;
@@ -70,12 +71,12 @@ public class ListenerService extends WearableListenerService {
             public void run() {
                 mApiClient.connect();
                 //CHANGE THESE FOR SPECIFIC MESSAGES
-                if (Objects.equals(sender, "LocationService")) {//THIS WONT DO ANYTHING
-                    sendMessage(START_ACTIVITY_QUAKE, message);
-                }else if (Objects.equals(sender, "PhotoActivity")) {//THIS WONT DO ANYTHING
-                    sendMessage(START_ACTIVITY_PHOTO, message);
+                if (Objects.equals(features, "all")) {//THIS WONT DO ANYTHING
+                    sendMessage(SEND_MESSAGE_ALL, code);
+                }else if (Objects.equals(features, "PhotoActivity")) {//THIS WONT DO ANYTHING
+                    sendMessage(SEND_MESSAGE_DPT, code);
                 }else {
-                    sendMessage(START_ACTIVITY, message);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
+                    sendMessage(SEND_MESSAGE_INDV, code);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
                 }
             }
         }).start();
@@ -109,7 +110,7 @@ public class ListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d(TAG, "onMessageReceived");
 
-        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
+        if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
 

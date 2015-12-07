@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageApi;
@@ -22,6 +23,11 @@ import java.util.Objects;
 public class ListenerService extends WearableListenerService {
     private static final String TAG = "ListenerService";
     private GoogleApiClient mApiClient;
+
+    private static final String SEND_MESSAGE_ALL = "/send_message_all";
+    private static final String SEND_MESSAGE_DPT = "/send_message_dpt";
+    private static final String SEND_MESSAGE_INDV = "/send_message_indv";
+
     private static final String START_ACTIVITY_QUAKE = "/start_activity_quake"; //CHANGE
     private static final String START_ACTIVITY_PHOTO = "/start_activity_photo"; //CHANGE
     private static final String START_ACTIVITY = "/start_activity";
@@ -107,32 +113,26 @@ public class ListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d(TAG, "onMessageReceived");
 
-        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
+        if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
 
-            Intent intent = new Intent(this, RegisterPage.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("message", message);
-            startActivity(intent);
+            Intent intent = new Intent(this, ServerService.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "all"); //all dpt indv
+            extras.putString("code", message); //adam black blue brown
+            intent.putExtras(extras);
 
-//            if (Objects.equals(message, "stop")) {
-//                Intent intent = new Intent(this, HomePage.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
-//            else if (Objects.equals(message, "photo")){
-//                Intent intent = new Intent(this, HomePage.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
+            startService(intent);
+
+
+
         } else {
             super.onMessageReceived( messageEvent );
         }
 
     }
+
 
 
 }

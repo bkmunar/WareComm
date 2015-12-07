@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -24,6 +25,9 @@ public class ServerService extends Service {
     public static final String PREFS_NAME = "MyApp_Settings";
     private HttpURLConnection urlConnection;
 
+    private String features;
+    private String code;
+
     private static final int INTERVAL = 10000;
     private static final int SECOND = 1000;
 
@@ -37,6 +41,15 @@ public class ServerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
+
+        Bundle extras = intent.getExtras();
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            code = intent.getStringExtra("code");
+            Log.d(TAG, features);
+            Log.d(TAG, code);
+        }
+        
         createAndStartEarthquakeService();
         return START_STICKY;
     }
@@ -84,6 +97,8 @@ public class ServerService extends Service {
         Log.d(TAG, "onPostExecute");
         Log.d(TAG, result);
         JSONObject mainObject = new JSONObject(result);
+
+
 
     }
 

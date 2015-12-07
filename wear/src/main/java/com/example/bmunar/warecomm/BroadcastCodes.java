@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class BroadcastCodes extends Activity {
+    private static final String TAG = "BroadcastCodes";
 
     private float x1,x2;
     static final int MIN_DISTANCE = 5;
@@ -106,15 +108,16 @@ public class BroadcastCodes extends Activity {
     }
 
     public void broadcastCode(View view){
-//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-//        Intent intent = new Intent(this, BroadcastPing.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
-        Intent anotherIntent = new Intent(this, ListenerService.class);
+        Log.d(TAG, "broadcastCode");
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BroadcastPing.class);
+
         Bundle extras = new Bundle();
         extras.putString("features", "all"); //all dpt indv
         extras.putString("code", ((Button) view).getText().toString()); //adam black blue brown
-        anotherIntent.putExtras(extras);
-        startService(anotherIntent);
+        intent.putExtras(extras);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

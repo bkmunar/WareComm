@@ -3,21 +3,36 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class BroadcastPing extends Activity {
+    private static final String TAG = "BroadcastPing";
+    private String features;
+    private String code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_ping);
-
         ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
         iv.setImageResource(R.drawable.broadcastping);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            code = intent.getStringExtra("code");
+            Log.d(TAG, features);
+            Log.d(TAG, code);
+        }
     }
 
     @Override
@@ -43,16 +58,24 @@ public class BroadcastPing extends Activity {
     }
 
     public void broadcastPing(View view){
-//        Intent toServer = new Intent(this, ListenerService.class);
-//        toServer.putExtra("message", "broadcast");
-//        startService(toServer);
-//
-//        Log.d("***********","*************");
-
+        Log.d(TAG, "broadcastPing");
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, BroadcastNotification.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+
+        Intent intent = new Intent(this, ListenerService.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", features); //all dpt indv
+        extras.putString("code", code); //adam black blue brown
+        intent.putExtras(extras);
+        Log.d(TAG, features);
+        Log.d(TAG, code);
+
+        startService(intent);
+
+//        //CODE TO FORCE DEMO FOR NOTIFICATION
+//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(this, BroadcastNotification.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
 
     }
 }
