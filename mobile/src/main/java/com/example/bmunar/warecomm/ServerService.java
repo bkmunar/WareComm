@@ -30,6 +30,9 @@ public class ServerService extends Service {
     private String code;
     private String dpt;
     private String indv;
+    private String sender = "jackson";
+    private String newFeatures = "all"; //HARD CODED FOR TESTING
+
 
     private static final int INTERVAL = 10000;
     private static final int SECOND = 1000;
@@ -108,6 +111,27 @@ public class ServerService extends Service {
         Log.d(TAG, "onPostExecute");
         Log.d(TAG, result);
         JSONObject mainObject = new JSONObject(result);
+
+
+        //CODE TO SEND DATA
+        Intent intent = new Intent(this, ListenerService.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", features); //all dpt indv
+
+        if (Objects.equals(newFeatures, "all")) {
+            code = intent.getStringExtra("code"); //adam black blue brown
+            Log.d(TAG, code);
+        } else if (Objects.equals(newFeatures, "dpt")) {
+            dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+            Log.d(TAG, dpt);
+        }else if (Objects.equals(newFeatures, "indv")){
+            indv = intent.getStringExtra("indv"); //dana, jackson
+            Log.d(TAG, indv);
+        }
+
+        intent.putExtras(extras);
+        startService(intent);
+
 
 
 
