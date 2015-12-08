@@ -81,12 +81,12 @@ public class ListenerService extends WearableListenerService {
             public void run() {
                 mApiClient.connect();
                 //CHANGE THESE FOR SPECIFIC MESSAGES
-                if (Objects.equals(features, "all")) {//THIS WONT DO ANYTHING
+                if (Objects.equals(features, "all")) {
                     sendMessage(SEND_MESSAGE_ALL, code);
-                }else if (Objects.equals(features, "dpt")) {//THIS WONT DO ANYTHING
+                }else if (Objects.equals(features, "dpt")) {
                     sendMessage(SEND_MESSAGE_DPT, dpt);
                 }else {
-                    sendMessage(SEND_MESSAGE_INDV, indv);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
+                    sendMessage(SEND_MESSAGE_INDV, indv);
                 }
             }
         }).start();
@@ -123,24 +123,33 @@ public class ListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-
-            Intent intent = new Intent(this, TestActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("message", message);
+            Intent intent = new Intent(this, BroadcastNotification.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "all"); //all dpt indv
+            extras.putString("code", message); //adam black blue brown
+            intent.putExtras(extras);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-
-//            if (Objects.equals(message, "stop")) { //THIS IS TO START AN ACTIVITY BASED OFF MESSAGE
-//                Intent intent = new Intent(this, CheckIn.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
-//            else if (Objects.equals(message, "photo")){ //THIS IS TO START AN ACTIVITY BASED OFF MESSAGE
-//                Intent intent = new Intent(this, CheckIn.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT ) ) {
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, requestNotification.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "dpt"); //all dpt indv
+            extras.putString("dpt", message); //appliances, bath, electrical, flooring
+            intent.putExtras(extras);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, IndividualRequest.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "indv"); //all dpt indv
+            extras.putString("indv", message); //dana, jackson
+            intent.putExtras(extras);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         } else {
             super.onMessageReceived( messageEvent );
         }
