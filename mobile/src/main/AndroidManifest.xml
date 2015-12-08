@@ -17,7 +17,11 @@
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
         </service>
-        <service android:name=".ServerService" />
+        <service android:name=".GetServerService">
+            <intent-filter>
+            <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+        </intent-filter>
+        </service>
 
         <activity
             android:name=".FirstPage"

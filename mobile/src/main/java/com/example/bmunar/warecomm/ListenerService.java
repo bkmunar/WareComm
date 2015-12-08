@@ -3,7 +3,6 @@ package com.example.bmunar.warecomm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.MessageApi;
@@ -123,7 +122,7 @@ public class ListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-            Intent intent = new Intent(this, ServerService.class);
+            Intent intent = new Intent(this, GetServerService.class);
             Bundle extras = new Bundle();
             extras.putString("features", "all"); //all dpt indv
             extras.putString("code", message); //adam black blue brown
@@ -132,7 +131,7 @@ public class ListenerService extends WearableListenerService {
         }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-            Intent intent = new Intent(this, ServerService.class);
+            Intent intent = new Intent(this, GetServerService.class);
             Bundle extras = new Bundle();
             extras.putString("features", "dpt"); //all dpt indv
             extras.putString("dpt", message); //appliances, bath, electrical, flooring
@@ -141,7 +140,7 @@ public class ListenerService extends WearableListenerService {
         }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
-            Intent intent = new Intent(this, ServerService.class);
+            Intent intent = new Intent(this, GetServerService.class);
             Bundle extras = new Bundle();
             extras.putString("features", "indv"); //all dpt indv
             extras.putString("indv", message); //dana, jackson

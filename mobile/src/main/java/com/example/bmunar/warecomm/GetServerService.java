@@ -16,20 +16,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * Updated by akester on 11/28/15.
  */
-public class ServerService extends Service {
-    private static final String TAG = "ServerService";
+public class GetServerService extends Service {
+    private static final String TAG = "GetServerService";
     public static final String PREFS_NAME = "MyApp_Settings";
     private HttpURLConnection urlConnection;
 
@@ -54,24 +49,8 @@ public class ServerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
-        postToServer();
-        Bundle extras = intent.getExtras();
-        if (extras!=null) {
-            features = intent.getStringExtra("features"); //all dpt indv
-            Log.d(TAG, features);
-            if (Objects.equals(features, "all")) {
-                code = intent.getStringExtra("code"); //adam black blue brown
-                Log.d(TAG, code);
-            } else if (Objects.equals(features, "dpt")) {
-                dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
-                Log.d(TAG, dpt);
-            }else if (Objects.equals(features, "indv")){
-                indv = intent.getStringExtra("indv"); //dana, jackson
-                Log.d(TAG, indv);
-            }
-        }
 
-        //createAndStartEarthquakeService();
+        createAndStartEarthquakeService();
         return START_STICKY;
     }
 
@@ -145,28 +124,25 @@ public class ServerService extends Service {
             extras.putString("features", features); //all dpt indv
 
             if (key.equals("all")) {
-                extras.putString("message", msg);
-                extras.putString("sender", senderId);
-                code = intent.getStringExtra("code"); //adam black blue brown
-                Log.d(TAG, code);
+                extras.putString("code", msg); //adam black blue brown
+                //extras.putString("sender", senderId);
+                //deleteping
+                Log.d(TAG, msg);
             } else if (key.equals("dpt")) {
-                extras.putString("message", msg);
-                extras.putString("sender", senderId);
-                dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
-                Log.d(TAG, dpt);
+                extras.putString("dpt", msg);//appliances, bath, electrical, flooring
+                //extras.putString("sender", senderId);
+                //deleteping
+                Log.d(TAG, msg);
             } else if (key.equals("indv")) {
-                extras.putString("message", msg);
-                extras.putString("sender", senderId);
-                indv = intent.getStringExtra("indv"); //dana, jackson
-                Log.d(TAG, indv);
+                extras.putString("indv", msg); //dana, jackson
+                //extras.putString("sender", senderId);
+                //delteping
+                Log.d(TAG, msg);
             }
 
             intent.putExtras(extras);
-//            startService(intent);
+            startService(intent);
         }
-
-
-
 
     }
 
@@ -198,12 +174,13 @@ public class ServerService extends Service {
         return sb.toString();
     }
 
-    public void postToServer(){
+    public void deleteFromServer(String dst){
+        final String DEST = dst;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
-                    URL urlToRequest = new URL("http://162.243.156.197:3002/post?dst=1&msg=derp");
+                    URL urlToRequest = new URL("http://162.243.156.197:3002/post?dst=" + DEST);
                     HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestMethod("POST");
@@ -230,27 +207,5 @@ public class ServerService extends Service {
             }
         }
         ).start();
-    }
-    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException{
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        Log.d("in get post Data", "");
-        for (Map.Entry<String, String> entry : params.entrySet()){
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-
-        Log.d("post result", result.toString());
-        return result.toString();
-    }
-
-    public void deleteFromServer(String dst){
-
     }
 }
