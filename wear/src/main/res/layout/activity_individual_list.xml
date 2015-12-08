@@ -12,4 +12,16 @@
         android:id="@+id/individualListImage"
         android:layout_gravity="center"
         android:onClick="selectIndividual"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Adam"
+        android:onClick="broadcastCode"
+        android:id="@+id/Adam"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Black"
+        android:onClick="broadcastCode"
+        android:id="@+id/Black"/>
 </FrameLayout>

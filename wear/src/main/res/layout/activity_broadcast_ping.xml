@@ -10,6 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/broadcastPingImage"
-        android:layout_gravity="center"
-        android:onClick="broadcastPing"/>
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:text="Cancel"
+        android:onClick="touchCancel"
+        android:id="@+id/Cancel"/>
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:text="Ping"
+        android:onClick="broadcastPing"
+        android:id="@+id/Ping"/>
 </FrameLayout>

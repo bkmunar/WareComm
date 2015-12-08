@@ -33,6 +33,16 @@ public class BroadcastPing extends Activity {
             Log.d(TAG, features);
             Log.d(TAG, code);
         }
+
+        Button button1 = (Button)findViewById(R.id.Cancel);
+        button1.setX(73);
+        button1.setY(170);
+//        button1.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button2 = (Button)findViewById(R.id.Ping);
+        button2.setX(145);
+        button2.setY(170);
+//        button2.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -77,5 +87,12 @@ public class BroadcastPing extends Activity {
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
 
+    }
+
+    public void touchCancel(View view){
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BroadcastCodes.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

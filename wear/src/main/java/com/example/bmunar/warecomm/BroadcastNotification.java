@@ -1,13 +1,10 @@
 package com.example.bmunar.warecomm;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BroadcastNotification extends Activity {
 
@@ -41,12 +38,4 @@ public class BroadcastNotification extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void returnBack(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, BroadcastCodes.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
 }

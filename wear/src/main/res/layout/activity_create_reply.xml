@@ -12,4 +12,28 @@
         android:id="@+id/createReplyImage"
         android:layout_gravity="center"
         android:onClick="createReply"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Adam"
+        android:onClick="createReply"
+        android:id="@+id/Adam"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Black"
+        android:onClick="createReply"
+        android:id="@+id/Black"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Blue"
+        android:onClick="createReply"
+        android:id="@+id/Blue"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Brown"
+        android:onClick="createReply"
+        android:id="@+id/Brown"/>
 </FrameLayout>
