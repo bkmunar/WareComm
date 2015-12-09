@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,12 +30,15 @@ public class IndividualList extends Activity {
         Button button1 = (Button)findViewById(R.id.Adam);
         button1.setX(35);
         button1.setY(55);
-//        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setTextColor(Color.TRANSPARENT);
+
 
         Button button2 = (Button)findViewById(R.id.Black);
         button2.setX(35);
         button2.setY(155);
-//        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setTextColor(Color.TRANSPARENT);
 
     }
 

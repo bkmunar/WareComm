@@ -38,7 +38,7 @@ public class ConfirmedNotification extends Activity {
             iv.setImageResource(R.drawable.confirmednotification);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
-            iv.setImageResource(R.drawable.confirmednotification);
+            iv.setImageResource(R.drawable.bryanisonhisway);
         }
 
     }
