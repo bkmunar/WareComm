@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -46,6 +47,16 @@ public class ReplyPing extends Activity {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
             iv.setImageResource(R.drawable.replyping);
         }
+
+        Button button1 = (Button)findViewById(R.id.Cancel);
+        button1.setX(73);
+        button1.setY(170);
+//        button1.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button2 = (Button)findViewById(R.id.Ping);
+        button2.setX(145);
+        button2.setY(170);
+//        button2.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -80,6 +91,13 @@ public class ReplyPing extends Activity {
         extras.putString("message", message);
         intent.putExtras(extras);
 
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void touchCancel(View view){
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, IndividualList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

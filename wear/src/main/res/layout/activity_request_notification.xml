@@ -13,4 +13,16 @@
         android:id="@+id/requestNotificationImage"
         android:layout_gravity="center"
         android:onClick="confirmRequest"/>
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:text="Cancel"
+        android:onClick="touchCancel"
+        android:id="@+id/Cancel"/>
+    <Button
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:text="Ping"
+        android:onClick="confirmRequest"
+        android:id="@+id/Ping"/>
 </FrameLayout>
