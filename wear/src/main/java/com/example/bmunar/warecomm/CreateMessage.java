@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,22 +39,27 @@ public class CreateMessage extends Activity {
         Button button1 = (Button)findViewById(R.id.Adam);
         button1.setX(35);
         button1.setY(55);
-//        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setTextColor(Color.TRANSPARENT);
 
         Button button2 = (Button)findViewById(R.id.Black);
         button2.setX(135);
         button2.setY(55);
-//        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setTextColor(Color.TRANSPARENT);
 
         Button button3 = (Button)findViewById(R.id.Blue);
         button3.setX(35);
         button3.setY(155);
-//        button3.setBackgroundColor(Color.TRANSPARENT);
+        button3.setBackgroundColor(Color.TRANSPARENT);
+        button3.setTextColor(Color.TRANSPARENT);
 
         Button button4 = (Button)findViewById(R.id.Brown);
         button4.setX(135);
         button4.setY(155);
-//        button4.setBackgroundColor(Color.TRANSPARENT);
+        button4.setBackgroundColor(Color.TRANSPARENT);
+        button4.setTextColor(Color.TRANSPARENT);
+
 
     }
 
@@ -93,7 +99,7 @@ public class CreateMessage extends Activity {
                 break;
             case "needed at cs": message = 2;
                 break;
-            case "needed at tools": message = 3;
+            case "need you at tools": message = 3;
                 break;
             default: message = 4;
         }

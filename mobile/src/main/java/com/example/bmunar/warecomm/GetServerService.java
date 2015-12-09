@@ -34,7 +34,7 @@ public class GetServerService extends Service {
     private String dpt;
     private String indv;
 
-    final String receiverId = "dana"; // MUST BE SAME OF YOUR SENDER ID!!
+    final String receiverId = "bryan"; // MUST BE SAME OF YOUR SENDER ID!!
 
 
     private static final int INTERVAL = 3000;
