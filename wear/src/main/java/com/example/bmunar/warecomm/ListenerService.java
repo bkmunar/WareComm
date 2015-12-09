@@ -89,7 +89,7 @@ public class ListenerService extends WearableListenerService {
                 }else if (Objects.equals(features, "dpt")) {
                     sendMessage(SEND_MESSAGE_DPT, dpt);
                 }else {
-                    final String doubleInfo = indv.concat(message1);
+                    final String doubleInfo = indv.concat(" ").concat(message1);
                     sendMessage(SEND_MESSAGE_INDV, doubleInfo);
                 }
             }

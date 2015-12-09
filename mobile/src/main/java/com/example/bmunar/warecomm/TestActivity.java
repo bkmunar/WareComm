@@ -12,11 +12,11 @@ import java.util.Objects;
  */
 public class TestActivity extends Activity {
     private static final String TAG = "TestActivity";
-    private static final String test = "This is a test message from the mobile";
-    private String features = "all";
+    private String features = "indv";
     private String code = "adam";
     private String dpt = "tools";
     private String indv = "dana";
+    private String message = "TEST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,11 @@ public class TestActivity extends Activity {
             Log.d(TAG, code);
         } else if (Objects.equals(features, "dpt")) {
             extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
+            extras.putString("message", message);
             Log.d(TAG, dpt);
         } else if (Objects.equals(features, "indv")) {
             extras.putString("indv", indv); //dana, jackson
+            extras.putString("message", message);
             Log.d(TAG, indv);
         }
         intent.putExtras(extras);
