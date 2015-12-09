@@ -33,18 +33,18 @@ public class IndividualRequest extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("appliances")) {
+        if (message.equals("call me")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
             iv.setImageResource(R.drawable.individualrequest);
-        } else if (indv.equals("bath")) {
+        } else if (message.equals("needed at cs")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
-            iv.setImageResource(R.drawable.individualrequest);
-        } else if (indv.equals("electrical")) {
+            iv.setImageResource(R.drawable.individualrequestcs);
+        } else if (message.equals("needed at tools")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
-            iv.setImageResource(R.drawable.individualrequest);
+            iv.setImageResource(R.drawable.individualrequesttools);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
-            iv.setImageResource(R.drawable.individualrequest);
+            iv.setImageResource(R.drawable.individualrequestregister);
         }
     }
 

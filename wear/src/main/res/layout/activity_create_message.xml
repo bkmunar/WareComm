@@ -15,25 +15,25 @@
     <Button
         android:layout_height="60dp"
         android:layout_width="60dp"
-        android:text="Adam"
+        android:text="call me"
         android:onClick="createMessage"
         android:id="@+id/Adam"/>
     <Button
         android:layout_height="60dp"
         android:layout_width="60dp"
-        android:text="Black"
+        android:text="needed at register"
         android:onClick="createMessage"
         android:id="@+id/Black"/>
     <Button
         android:layout_height="60dp"
         android:layout_width="60dp"
-        android:text="Blue"
+        android:text="needed at cs"
         android:onClick="createMessage"
         android:id="@+id/Blue"/>
     <Button
         android:layout_height="60dp"
         android:layout_width="60dp"
-        android:text="Brown"
+        android:text="need you at tools"
         android:onClick="createMessage"
         android:id="@+id/Brown"/>
 </FrameLayout>

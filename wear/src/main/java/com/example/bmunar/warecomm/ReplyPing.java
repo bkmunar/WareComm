@@ -34,18 +34,18 @@ public class ReplyPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("appliances")) {
+        if (message.equals("okay")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
-        } else if (indv.equals("bath")) {
+            iv.setImageResource(R.drawable.individualreplypingokay);
+        } else if (message.equals("5 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
-        } else if (indv.equals("electrical")) {
+            iv.setImageResource(R.drawable.individualreplyping5more);
+        } else if (message.equals("10 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
+            iv.setImageResource(R.drawable.individualreplyping10more);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
+            iv.setImageResource(R.drawable.individualreplypingnotnow);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);

@@ -88,8 +88,7 @@ public class CreateMessage extends Activity {
         extras.putString("features", "indv"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
 
-        message = "TEST";//REMOVE
-        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        extras.putString("message", ((Button) view).getText().toString());
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

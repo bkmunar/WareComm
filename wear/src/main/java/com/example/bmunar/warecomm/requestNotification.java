@@ -38,13 +38,13 @@ public class requestNotification extends Activity {
             iv.setImageResource(R.drawable.requestnotification);
         } else if (dpt.equals("bath")) {
             ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
-            iv.setImageResource(R.drawable.requestnotification);
+            iv.setImageResource(R.drawable.requestnotificationbath);
         } else if (dpt.equals("electrical")) {
             ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
-            iv.setImageResource(R.drawable.requestnotification);
+            iv.setImageResource(R.drawable.requestnotificationelectrical);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
-            iv.setImageResource(R.drawable.requestnotification);
+            iv.setImageResource(R.drawable.requestnotificationflooring);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);

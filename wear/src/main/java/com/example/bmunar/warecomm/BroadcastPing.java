@@ -38,13 +38,13 @@ public class BroadcastPing extends Activity {
             iv.setImageResource(R.drawable.broadcastping);
         } else if (code.equals("black")) {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
-            iv.setImageResource(R.drawable.broadcastping);
+            iv.setImageResource(R.drawable.codeblackping);
         } else if (code.equals("blue")) {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
-            iv.setImageResource(R.drawable.broadcastping);
+            iv.setImageResource(R.drawable.codeblueping);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
-            iv.setImageResource(R.drawable.broadcastping);
+            iv.setImageResource(R.drawable.codebrownping);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);

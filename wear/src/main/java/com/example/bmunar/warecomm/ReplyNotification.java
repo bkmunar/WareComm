@@ -33,18 +33,18 @@ public class ReplyNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("appliances")) {
+        if (message.equals("okay")) {
             ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
             iv.setImageResource(R.drawable.replynotification);
-        } else if (indv.equals("bath")) {
+        } else if (message.equals("5 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
-            iv.setImageResource(R.drawable.replynotification);
-        } else if (indv.equals("electrical")) {
+            iv.setImageResource(R.drawable.replynotification5more);
+        } else if (message.equals("10 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
-            iv.setImageResource(R.drawable.replynotification);
+            iv.setImageResource(R.drawable.replynotification10more);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
-            iv.setImageResource(R.drawable.replynotification);
+            iv.setImageResource(R.drawable.replynotificationnotnow);
         }
     }
 

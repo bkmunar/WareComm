@@ -37,13 +37,13 @@ public class DepartmentPing extends Activity {
             iv.setImageResource(R.drawable.departmentping);
         } else if (dpt.equals("bath")) {
             ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
-            iv.setImageResource(R.drawable.departmentping);
+            iv.setImageResource(R.drawable.departmentpingbath);
         } else if (dpt.equals("electrical")) {
             ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
-            iv.setImageResource(R.drawable.departmentping);
+            iv.setImageResource(R.drawable.departmentpingelectric);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
-            iv.setImageResource(R.drawable.departmentping);
+            iv.setImageResource(R.drawable.departmentpingflooring);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);

@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class CreateReply extends Activity {
@@ -30,21 +29,6 @@ public class CreateReply extends Activity {
             indv = intent.getStringExtra("indv");
             Log.d(TAG, features);
             Log.d(TAG, indv);
-        }
-
-        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("adam")) {
-            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
-            iv.setImageResource(R.drawable.createreply);
-        } else if (indv.equals("black")) {
-            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
-            iv.setImageResource(R.drawable.createreply);
-        } else if (indv.equals("blue")) {
-            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
-            iv.setImageResource(R.drawable.createreply);
-        } else {
-            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
-            iv.setImageResource(R.drawable.createreply);
         }
 
         Button button1 = (Button)findViewById(R.id.Adam);
@@ -98,8 +82,7 @@ public class CreateReply extends Activity {
         extras.putString("features", "indv"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
 
-        message = "TEST";//REMOVE
-        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        extras.putString("message", ((Button) view).getText().toString());
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

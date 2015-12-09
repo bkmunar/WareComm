@@ -10,18 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/individualListImage"
-        android:layout_gravity="center"
-        android:onClick="selectIndividual"/>
+        android:layout_gravity="center"/>
     <Button
         android:layout_height="60dp"
-        android:layout_width="60dp"
+        android:layout_width="120dp"
         android:text="Adam"
-        android:onClick="broadcastCode"
+        android:onClick="selectIndividual"
         android:id="@+id/Adam"/>
     <Button
         android:layout_height="60dp"
-        android:layout_width="60dp"
+        android:layout_width="120dp"
         android:text="Black"
-        android:onClick="broadcastCode"
+        android:onClick="selectIndividual"
         android:id="@+id/Black"/>
 </FrameLayout>
