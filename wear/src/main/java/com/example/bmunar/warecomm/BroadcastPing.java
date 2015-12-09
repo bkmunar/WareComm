@@ -29,10 +29,12 @@ public class BroadcastPing extends Activity {
 
         if (extras!=null) {
             features = intent.getStringExtra("features");
-            code = intent.getStringExtra("code");
+            code = intent.getStringExtra("code"); //adam black blue brown
             Log.d(TAG, features);
             Log.d(TAG, code);
         }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);

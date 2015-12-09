@@ -23,8 +23,8 @@ public class FirstPage extends AppCompatActivity {
 
         //TESTING LISTENER SERVICE
 
-        Intent i = new Intent(this, GetServerService.class);
-        startService(i);
+//        Intent i = new Intent(this, GetServerService.class);
+//        startService(i);
 //
 //        Intent i = new Intent(this, TestActivity.class);
 //        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

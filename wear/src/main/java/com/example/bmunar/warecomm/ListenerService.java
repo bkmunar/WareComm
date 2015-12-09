@@ -29,6 +29,7 @@ public class ListenerService extends WearableListenerService {
     private String code;
     private String dpt;
     private String indv;
+    private String message1;
 
 
     @Override
@@ -66,7 +67,9 @@ public class ListenerService extends WearableListenerService {
                 Log.d(TAG, dpt);
             } else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv");
+                message1 = intent.getStringExtra("message");
                 Log.d(TAG, indv);
+                Log.d(TAG, message1);
             }
         }
         createAndStartTimer();
@@ -86,7 +89,8 @@ public class ListenerService extends WearableListenerService {
                 }else if (Objects.equals(features, "dpt")) {
                     sendMessage(SEND_MESSAGE_DPT, dpt);
                 }else {
-                    sendMessage(SEND_MESSAGE_INDV, indv);
+                    final String doubleInfo = indv.concat(message1);
+                    sendMessage(SEND_MESSAGE_INDV, doubleInfo);
                 }
             }
         }).start();
@@ -136,7 +140,14 @@ public class ListenerService extends WearableListenerService {
             Intent intent = new Intent(this, requestNotification.class);
             Bundle extras = new Bundle();
             extras.putString("features", "dpt"); //all dpt indv
-            extras.putString("dpt", message); //appliances, bath, electrical, flooring
+
+            final String[] splitStringArray = message.split(" ");
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("dpt", a); //dana, jackson
+            extras.putString("message", b);
+
             intent.putExtras(extras);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -146,7 +157,14 @@ public class ListenerService extends WearableListenerService {
             Intent intent = new Intent(this, IndividualRequest.class);
             Bundle extras = new Bundle();
             extras.putString("features", "indv"); //all dpt indv
-            extras.putString("indv", message); //dana, jackson
+
+            final String[] splitStringArray = message.split(" ");
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("indv", a); //dana, jackson
+            extras.putString("message", b);
+
             intent.putExtras(extras);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

@@ -15,6 +15,7 @@ public class CreateMessage extends Activity {
     private static final String TAG = "CreateMessage";
     private String features;
     private String indv;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,9 @@ public class CreateMessage extends Activity {
         Bundle extras = new Bundle();
         extras.putString("features", "indv"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
+
+        message = "TEST";//REMOVE
+        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

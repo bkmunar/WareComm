@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ReplyPing extends Activity {
+    private static final String TAG = "ReplyPing";
+    private String features;
+    private String indv;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,20 @@ public class ReplyPing extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
         iv.setImageResource(R.drawable.replyping);
+
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            indv = intent.getStringExtra("indv");
+            message = intent.getStringExtra("message");
+            Log.d(TAG, features);
+            Log.d(TAG, indv);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
     }
 
     @Override
@@ -45,6 +64,13 @@ public class ReplyPing extends Activity {
     public void replyPing(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, ReplyNotification.class);
+
+        Bundle extras = new Bundle();
+        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("indv", "dana"); //dana, jackson
+        extras.putString("message", message);
+        intent.putExtras(extras);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

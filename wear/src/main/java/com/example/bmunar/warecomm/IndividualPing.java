@@ -15,6 +15,7 @@ public class IndividualPing extends Activity {
     private static final String TAG = "CreateMessage";
     private String features;
     private String indv;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,12 @@ public class IndividualPing extends Activity {
         if (extras!=null) {
             features = intent.getStringExtra("features");
             indv = intent.getStringExtra("indv");
+            message = intent.getStringExtra("message");
             Log.d(TAG, features);
             Log.d(TAG, indv);
         }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);
@@ -75,6 +79,7 @@ public class IndividualPing extends Activity {
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
         extras.putString("indv", indv); //appliances, bath, electrical, flooring
+        extras.putString("message", message);
         intent.putExtras(extras);
         Log.d(TAG, features);
         Log.d(TAG, indv);

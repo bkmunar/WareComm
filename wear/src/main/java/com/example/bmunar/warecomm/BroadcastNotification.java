@@ -1,20 +1,37 @@
 package com.example.bmunar.warecomm;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 public class BroadcastNotification extends Activity {
+    private static final String TAG = "BroadcastNotification";
+    private String features;
+    private String code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.broadcastNotificationImage);
+        ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
         iv.setImageResource(R.drawable.broadcastnotification);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            code = intent.getStringExtra("code"); //adam black blue brown
+            Log.d(TAG, features);
+            Log.d(TAG, code);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
     }
 
     @Override

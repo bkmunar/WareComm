@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ConfirmedNotification extends Activity {
+    private static final String TAG = "ConfirmedNotification";
+    private String features;
+    private String dpt;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,20 @@ public class ConfirmedNotification extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
         iv.setImageResource(R.drawable.confirmednotification);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features"); //all dpt indv
+            dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+            message = intent.getStringExtra("message");
+            Log.d(TAG, features);
+            Log.d(TAG, dpt);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+
     }
 
     @Override

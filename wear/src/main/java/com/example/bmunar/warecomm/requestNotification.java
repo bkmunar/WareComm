@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class requestNotification extends Activity {
+    private static final String TAG = "requestNotification";
+    private String features;
+    private String dpt;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +23,18 @@ public class requestNotification extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
         iv.setImageResource(R.drawable.requestnotification);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features"); //all dpt indv
+            dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+            Log.d(TAG, features);
+            Log.d(TAG, dpt);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
     }
 
     @Override
@@ -43,9 +60,15 @@ public class requestNotification extends Activity {
     }
 
     public void confirmRequest(View view){
-
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ConfirmedNotification.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", features); //all dpt indv
+        extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
+        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        intent.putExtras(extras);
+        Log.d(TAG, features);
+        Log.d(TAG, dpt);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 

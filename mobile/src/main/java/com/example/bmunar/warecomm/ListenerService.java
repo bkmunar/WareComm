@@ -30,6 +30,8 @@ public class ListenerService extends WearableListenerService {
     private String code;
     private String dpt;
     private String indv;
+    private String message1;
+    private String message2;
 
 
     @Override
@@ -64,9 +66,11 @@ public class ListenerService extends WearableListenerService {
                 Log.d(TAG, code);
             } else if (Objects.equals(features, "dpt")) {
                 dpt = intent.getStringExtra("dpt");
+                message1 = intent.getStringExtra("message");
                 Log.d(TAG, dpt);
             } else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv");
+                message1 = intent.getStringExtra("message");
                 Log.d(TAG, indv);
             }
         }
@@ -85,9 +89,11 @@ public class ListenerService extends WearableListenerService {
                 if (Objects.equals(features, "all")) {
                     sendMessage(SEND_MESSAGE_ALL, code);
                 }else if (Objects.equals(features, "dpt")) {
-                    sendMessage(SEND_MESSAGE_DPT, dpt);
+                    final String doubleInfo = indv.concat(message2);
+                    sendMessage(SEND_MESSAGE_DPT, doubleInfo);
                 }else {
-                    sendMessage(SEND_MESSAGE_INDV, indv);
+                    final String doubleInfo = indv.concat(message1);
+                    sendMessage(SEND_MESSAGE_INDV, doubleInfo);
                 }
             }
         }).start();
@@ -143,7 +149,14 @@ public class ListenerService extends WearableListenerService {
             Intent intent = new Intent(this, GetServerService.class);
             Bundle extras = new Bundle();
             extras.putString("features", "indv"); //all dpt indv
-            extras.putString("indv", message); //dana, jackson
+
+            final String[] splitStringArray = message.split(" ");
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("indv", a); //dana, jackson
+            extras.putString("message", b);
+
             intent.putExtras(extras);
             startService(intent);
         } else {

@@ -28,11 +28,13 @@ public class DepartmentPing extends Activity {
         Bundle extras = intent.getExtras();
 
         if (extras!=null) {
-            features = intent.getStringExtra("features");
-            dpt = intent.getStringExtra("dpt");
+            features = intent.getStringExtra("features"); //all dpt indv
+            dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
             Log.d(TAG, features);
             Log.d(TAG, dpt);
         }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);

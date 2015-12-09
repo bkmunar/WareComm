@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,11 +12,27 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class CreateReply extends Activity {
+    private static final String TAG = "CreateReply";
+    private String features;
+    private String indv;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_reply);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            indv = intent.getStringExtra("indv");
+            Log.d(TAG, features);
+            Log.d(TAG, indv);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
 
         ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
         iv.setImageResource(R.drawable.createreply);
@@ -65,6 +82,15 @@ public class CreateReply extends Activity {
     public void createReply(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, ReplyPing.class);
+
+        Bundle extras = new Bundle();
+        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("indv", "dana"); //dana, jackson
+
+        message = "TEST";//REMOVE
+        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        intent.putExtras(extras);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
