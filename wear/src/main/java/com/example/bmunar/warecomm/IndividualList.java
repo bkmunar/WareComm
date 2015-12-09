@@ -25,6 +25,17 @@ public class IndividualList extends Activity {
 
         ImageView iv = (ImageView)findViewById(R.id.individualListImage);
         iv.setImageResource(R.drawable.individuallist);
+
+        Button button1 = (Button)findViewById(R.id.Adam);
+        button1.setX(35);
+        button1.setY(55);
+//        button1.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button2 = (Button)findViewById(R.id.Black);
+        button2.setX(35);
+        button2.setY(155);
+//        button2.setBackgroundColor(Color.TRANSPARENT);
+
     }
 
     @Override

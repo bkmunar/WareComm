@@ -34,18 +34,18 @@ public class IndividualPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("appliances")) {
+        if (message.equals("call me")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
             iv.setImageResource(R.drawable.individualping);
-        } else if (indv.equals("bath")) {
+        } else if (message.equals("needed at cs")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
-            iv.setImageResource(R.drawable.individualping);
-        } else if (indv.equals("electrical")) {
+            iv.setImageResource(R.drawable.individualpingcs);
+        } else if (message.equals("needed at tools")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
-            iv.setImageResource(R.drawable.individualping);
+            iv.setImageResource(R.drawable.individualpingtools);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
-            iv.setImageResource(R.drawable.individualping);
+            iv.setImageResource(R.drawable.individualpingregister);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);

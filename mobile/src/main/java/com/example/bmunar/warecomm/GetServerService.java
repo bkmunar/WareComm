@@ -140,7 +140,7 @@ public class GetServerService extends Service {
 
                     String msg2 = mainObject.getJSONObject(key).getString("msg2");
                     Log.d(TAG, msg2);
-                    extras.putString("dpt", msg2);
+                    extras.putString("message", msg2);
 
                     //extras.putString("sender", senderId);
                     deleteFromServer(key);

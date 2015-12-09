@@ -31,21 +31,22 @@ public class ReplyPing extends Activity {
             message = intent.getStringExtra("message");
             Log.d(TAG, features);
             Log.d(TAG, indv);
+            Log.d(TAG, message);
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (indv.equals("appliances")) {
+        if (message.equals("okay")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
-        } else if (indv.equals("bath")) {
+            iv.setImageResource(R.drawable.individualreplypingokay);
+        } else if (message.equals("5 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
-        } else if (indv.equals("electrical")) {
+            iv.setImageResource(R.drawable.individualreplyping5more);
+        } else if (message.equals("10 minutes")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
+            iv.setImageResource(R.drawable.individualreplyping10more);
         } else {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-            iv.setImageResource(R.drawable.replyping);
+            iv.setImageResource(R.drawable.individualreplypingnotnow);
         }
 
         Button button1 = (Button)findViewById(R.id.Cancel);
@@ -83,7 +84,7 @@ public class ReplyPing extends Activity {
 
     public void replyPing(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, ReplyNotification.class);
+        Intent intent = new Intent(this, ListenerService.class);
 
         Bundle extras = new Bundle();
         extras.putString("features", "indv"); //all dpt indv

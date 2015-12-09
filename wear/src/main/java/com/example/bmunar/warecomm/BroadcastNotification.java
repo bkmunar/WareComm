@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class BroadcastNotification extends Activity {
     private static final String TAG = "BroadcastNotification";
@@ -28,19 +30,19 @@ public class BroadcastNotification extends Activity {
             Log.d(TAG, code);
         }
 
-        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        // BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
         if (code.equals("adam")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
             iv.setImageResource(R.drawable.broadcastnotification);
         } else if (code.equals("black")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
-            iv.setImageResource(R.drawable.broadcastnotification);
+            iv.setImageResource(R.drawable.broadcastnotificationpingblack);
         } else if (code.equals("blue")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
-            iv.setImageResource(R.drawable.broadcastnotification);
+            iv.setImageResource(R.drawable.broadcastnotificationpingblue);
         } else {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
-            iv.setImageResource(R.drawable.broadcastnotification);
+            iv.setImageResource(R.drawable.broadcastnotificationpingbrown);
         }
     }
 
@@ -64,5 +66,15 @@ public class BroadcastNotification extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // ADD ON TOUCH EVENT TO RETURN TO MAIN SCREEN
+    public void backToHome(View view){
+        Log.d(TAG, "selectIndividual");
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, BroadcastCodes.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

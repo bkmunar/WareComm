@@ -62,10 +62,13 @@ public class PostServerService extends Service {
 
             } else if (Objects.equals(features, "dpt")) {
                 dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+                message = intent.getStringExtra("message"); //dana, jackson
                 Log.d(TAG, dpt);
 
                 final String paramTwo = "&msg1=" + dpt;
-                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(senderId);
+                final String paramThree = "&msg2=" + message;
+
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(paramThree).concat(senderId);
 
             }else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv"); //dana, jackson
