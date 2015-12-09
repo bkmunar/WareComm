@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class IndividualList extends Activity {
     private static final String TAG = "IndividualList";
@@ -66,7 +64,6 @@ public class IndividualList extends Activity {
                     // Left to Right swipe action
                     if (x2 < x1)
                     {
-                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, CheckOut.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -75,7 +72,6 @@ public class IndividualList extends Activity {
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, DepartmentList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -102,8 +98,6 @@ public class IndividualList extends Activity {
     }
 
     public void selectIndividual(View view){
-        Log.d(TAG, "selectIndividual");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CreateMessage.class);
 
         Bundle extras = new Bundle();

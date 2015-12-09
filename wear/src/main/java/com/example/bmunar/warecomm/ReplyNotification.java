@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ReplyNotification extends Activity {
     private static final String TAG = "ReplyNotification";
@@ -71,7 +70,6 @@ public class ReplyNotification extends Activity {
     }
 
     public void returnBack(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, IndividualList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

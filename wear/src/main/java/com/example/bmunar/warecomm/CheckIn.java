@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class CheckIn extends Activity {
 
@@ -51,7 +50,6 @@ public class CheckIn extends Activity {
     }
 
     public void checkin(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, CheckOut.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

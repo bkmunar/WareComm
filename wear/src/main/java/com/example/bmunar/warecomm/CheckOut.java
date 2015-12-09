@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class CheckOut extends Activity {
 
@@ -63,7 +62,6 @@ public class CheckOut extends Activity {
                     // Left to Right swipe action
                     if (x2 < x1)
                     {
-                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, BroadcastCodes.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -72,7 +70,6 @@ public class CheckOut extends Activity {
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, IndividualList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -84,7 +81,6 @@ public class CheckOut extends Activity {
     }
 
         public void checkout(View view){
-            Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
             Intent intent = new Intent(this, CheckIn.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

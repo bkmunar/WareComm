@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class CreateReply extends Activity {
     private static final String TAG = "CreateReply";
@@ -85,7 +84,6 @@ public class CreateReply extends Activity {
     }
 
     public void createReply(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, ReplyPing.class);
 
         Bundle extras = new Bundle();

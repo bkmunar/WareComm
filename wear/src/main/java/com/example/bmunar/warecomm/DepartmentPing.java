@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class DepartmentPing extends Activity {
     private static final String TAG = "DepartmentPing";
@@ -86,7 +85,6 @@ public class DepartmentPing extends Activity {
 
     public void departmentPing(View view){
         Log.d(TAG, "broadcastPing");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, ListenerService.class);
         Bundle extras = new Bundle();
@@ -99,7 +97,6 @@ public class DepartmentPing extends Activity {
 
         startService(intent);
 
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent2 = new Intent(this, DepartmentList.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);

@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class IndividualRequest extends Activity {
     private static final String TAG = "IndividualRequest";
@@ -71,7 +70,6 @@ public class IndividualRequest extends Activity {
     }
 
     public void replyToRequest(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, CreateReply.class);
 
         Bundle extras = new Bundle();

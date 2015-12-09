@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class ConfirmedNotification extends Activity {
     private static final String TAG = "ConfirmedNotification";
@@ -66,7 +65,6 @@ public class ConfirmedNotification extends Activity {
     }
 
     public void returnBack(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DepartmentList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

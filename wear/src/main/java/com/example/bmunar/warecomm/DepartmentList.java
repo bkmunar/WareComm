@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class DepartmentList extends Activity {
     private static final String TAG = "DepartmentList";
@@ -95,7 +94,6 @@ public class DepartmentList extends Activity {
                     // Left to Right swipe action
                     if (x2 < x1)
                     {
-                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, IndividualList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -104,7 +102,6 @@ public class DepartmentList extends Activity {
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, BroadcastCodes.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -118,7 +115,6 @@ public class DepartmentList extends Activity {
     public void selectDepartment(View view){
         Log.d(TAG, "selectDepartment");
 
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DepartmentPing.class);
 
         Bundle extras = new Bundle();

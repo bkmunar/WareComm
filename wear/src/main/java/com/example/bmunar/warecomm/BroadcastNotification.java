@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BroadcastNotification extends Activity {
     private static final String TAG = "BroadcastNotification";
@@ -71,7 +70,6 @@ public class BroadcastNotification extends Activity {
     // ADD ON TOUCH EVENT TO RETURN TO MAIN SCREEN
     public void backToHome(View view){
         Log.d(TAG, "selectIndividual");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, BroadcastCodes.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

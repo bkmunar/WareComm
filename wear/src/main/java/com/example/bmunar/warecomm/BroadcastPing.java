@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BroadcastPing extends Activity {
     private static final String TAG = "BroadcastPing";
@@ -86,7 +85,6 @@ public class BroadcastPing extends Activity {
 
     public void broadcastPing(View view){
         Log.d(TAG, "broadcastPing");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, ListenerService.class);
         Bundle extras = new Bundle();
@@ -98,7 +96,6 @@ public class BroadcastPing extends Activity {
 
         startService(intent);
 
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent2 = new Intent(this, BroadcastCodes.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
@@ -106,7 +103,6 @@ public class BroadcastPing extends Activity {
     }
 
     public void touchCancel(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, BroadcastCodes.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

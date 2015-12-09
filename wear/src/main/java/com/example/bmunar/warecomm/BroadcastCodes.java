@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BroadcastCodes extends Activity {
     private static final String TAG = "BroadcastCodes";
@@ -92,7 +91,6 @@ public class BroadcastCodes extends Activity {
                     // Left to Right swipe action
                     if (x2 < x1)
                     {
-                        Toast.makeText(this, "Right to Left", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, DepartmentList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -101,7 +99,6 @@ public class BroadcastCodes extends Activity {
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Left to Right", Toast.LENGTH_SHORT).show ();
                         Intent intent = new Intent(this, CheckOut.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -114,7 +111,6 @@ public class BroadcastCodes extends Activity {
 
     public void broadcastCode(View view){
         Log.d(TAG, "broadcastCode");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, BroadcastPing.class);
 
         Bundle extras = new Bundle();

@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class CreateMessage extends Activity {
     private static final String TAG = "CreateMessage";
@@ -87,7 +86,6 @@ public class CreateMessage extends Activity {
 
     public void createMessage(View view){
         Log.d(TAG, "createMessage");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, IndividualPing.class);
 
         Bundle extras = new Bundle();

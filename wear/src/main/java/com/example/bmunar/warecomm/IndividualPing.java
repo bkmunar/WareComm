@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class IndividualPing extends Activity {
     private static final String TAG = "CreateMessage";
@@ -87,7 +86,6 @@ public class IndividualPing extends Activity {
 
     public void individualPing(View view){
         Log.d(TAG, "individualPing");
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, ListenerService.class);
         Bundle extras = new Bundle();
@@ -100,14 +98,12 @@ public class IndividualPing extends Activity {
 
         startService(intent);
 
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent2 = new Intent(this, IndividualList.class);
         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent2);
 
     }
     public void touchCancel(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, IndividualList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
