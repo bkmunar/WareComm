@@ -33,13 +33,13 @@ public class IndividualRequest extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (message.equals("call me")) {
+        if (message.equals("1")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
             iv.setImageResource(R.drawable.individualrequest);
-        } else if (message.equals("needed at cs")) {
+        } else if (message.equals("2")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
             iv.setImageResource(R.drawable.individualrequestcs);
-        } else if (message.equals("needed at tools")) {
+        } else if (message.equals("3")) {
             ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
             iv.setImageResource(R.drawable.individualrequesttools);
         } else {
