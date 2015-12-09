@@ -30,6 +30,7 @@ public class ListenerService extends WearableListenerService {
     private String dpt;
     private String indv;
     private String message1;
+    private String message2;
 
 
     @Override
@@ -64,6 +65,7 @@ public class ListenerService extends WearableListenerService {
                 Log.d(TAG, code);
             } else if (Objects.equals(features, "dpt")) {
                 dpt = intent.getStringExtra("dpt");
+                message2 = intent.getStringExtra("message");
                 Log.d(TAG, dpt);
             } else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv");
@@ -87,7 +89,8 @@ public class ListenerService extends WearableListenerService {
                 if (Objects.equals(features, "all")) {
                     sendMessage(SEND_MESSAGE_ALL, code);
                 }else if (Objects.equals(features, "dpt")) {
-                    sendMessage(SEND_MESSAGE_DPT, dpt);
+                    final String doubleInfo = dpt.concat(" ").concat(message2);
+                    sendMessage(SEND_MESSAGE_DPT, doubleInfo);
                 }else {
                     final String doubleInfo = indv.concat(" ").concat(message1);
                     sendMessage(SEND_MESSAGE_INDV, doubleInfo);

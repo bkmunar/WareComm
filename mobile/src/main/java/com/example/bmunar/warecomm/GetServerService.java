@@ -138,9 +138,9 @@ public class GetServerService extends Service {
                     Log.d(TAG, msg1);
                     extras.putString("dpt", msg1);//appliances, bath, electrical, flooring
 
-//                    String msg2 = mainObject.getJSONObject(key).getString("msg2");
-//                    Log.d(TAG, msg2);
-//                    extras.putString("dpt", msg2);
+                    String msg2 = mainObject.getJSONObject(key).getString("msg2");
+                    Log.d(TAG, msg2);
+                    extras.putString("message", msg2);
 
                     //extras.putString("sender", senderId);
                     deleteFromServer(key);
