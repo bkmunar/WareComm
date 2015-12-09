@@ -19,6 +19,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Updated by akester on 11/28/15.
@@ -32,8 +33,8 @@ public class GetServerService extends Service {
     private String code;
     private String dpt;
     private String indv;
-    private String sender = "jackson";
-    private String newFeatures = "all"; //HARD CODED FOR TESTING
+
+    final String receiverId = "bryan";
 
 
     private static final int INTERVAL = 3000;
@@ -50,12 +51,12 @@ public class GetServerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
 
-        createAndStartEarthquakeService();
+        createAndStartGetServerService();
         return START_STICKY;
     }
 
-    private void createAndStartEarthquakeService() {
-        Log.d(TAG, "Get Quakes");
+    private void createAndStartGetServerService() {
+        Log.d(TAG, "Get Messages");
 
         CountDownTimer timer = new CountDownTimer(INTERVAL, SECOND) {
             public void onTick(long millisUntilFinished) { }
@@ -66,26 +67,25 @@ public class GetServerService extends Service {
             public void run() {
                 JSONObject result = null;
                     try {
-                        Log.e("TAG", "Starting Earthquake URL construction");
-                         //Construct URL to query Earthquake data
+                        Log.d(TAG, "Starting URL construction");
 
                         URL url = new URL("http://162.243.156.197:3002/get");
                         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                         try {
-                            Log.e("asdf", "got in");
+                            Log.e(TAG, "got in");
 
                             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                             // What if JSON object is null? The InputStream is null?
                             result = new JSONObject(readStream(in));
-                            Log.e("result in thread", result.toString());
+                            Log.e(TAG, result.toString());
 
                         } finally {
                             urlConnection.disconnect();
-                            Log.e("asdf", "got out");
+                            Log.e(TAG, "got out");
                         }
                     } catch (Exception e) {
                         // do nothing for now
-                        Log.e("asdf", "some exception");
+                        Log.e(TAG, "some exception");
                     }
 
                     try {
@@ -98,7 +98,7 @@ public class GetServerService extends Service {
             }
         }).start();
                 // Start the timer again
-                createAndStartEarthquakeService();
+                createAndStartGetServerService();
             }
         };
 
@@ -112,36 +112,58 @@ public class GetServerService extends Service {
         Iterator<String> iter = mainObject.keys();
         while (iter.hasNext()) {
             String key = iter.next();
-            String dst = key;
-            String msg = mainObject.getJSONObject(key).getString("msg");
+            Log.d(TAG, key);
             String senderId = mainObject.getJSONObject(key).getString("senderId");
-            System.out.println(dst + " " + msg + " " + senderId);
+            Log.d(TAG, senderId);
 
+            if (!Objects.equals(receiverId, senderId)) {
 
-            //CODE TO SEND DATA
-            Intent intent = new Intent(this, ListenerService.class);
-            Bundle extras = new Bundle();
-            extras.putString("features", features); //all dpt indv
+                //CODE TO SEND DATA TO LISTENER
+                Intent intent = new Intent(this, ListenerService.class);
+                Bundle extras = new Bundle();
 
-            if (key.equals("all")) {
-                extras.putString("code", msg); //adam black blue brown
-                //extras.putString("sender", senderId);
-                //deleteping
-                Log.d(TAG, msg);
-            } else if (key.equals("dpt")) {
-                extras.putString("dpt", msg);//appliances, bath, electrical, flooring
-                //extras.putString("sender", senderId);
-                //deleteping
-                Log.d(TAG, msg);
-            } else if (key.equals("indv")) {
-                extras.putString("indv", msg); //dana, jackson
-                //extras.putString("sender", senderId);
-                //delteping
-                Log.d(TAG, msg);
+                if (key.equals("all")) {
+                    extras.putString("features", key); //all dpt indv
+
+                    String msg1 = mainObject.getJSONObject(key).getString("msg1");
+                    Log.d(TAG, msg1);
+                    extras.putString("code", msg1); //adam black blue brown
+                    //extras.putString("sender", senderId);
+                    deleteFromServer(key);
+
+                } else if (key.equals("dpt")) {
+                    extras.putString("features", key); //all dpt indv
+
+                    String msg1 = mainObject.getJSONObject(key).getString("msg1");
+                    Log.d(TAG, msg1);
+                    extras.putString("dpt", msg1);//appliances, bath, electrical, flooring
+
+                    String msg2 = mainObject.getJSONObject(key).getString("msg2");
+                    Log.d(TAG, msg2);
+                    extras.putString("dpt", msg2);
+
+                    //extras.putString("sender", senderId);
+                    deleteFromServer(key);
+
+                } else if (key.equals("indv")) {
+                    extras.putString("features", key); //all dpt indv
+
+                    String msg1 = mainObject.getJSONObject(key).getString("msg1");
+                    Log.d(TAG, msg1);
+                    extras.putString("indv", msg1); //dana, jackson
+
+                    String msg2 = mainObject.getJSONObject(key).getString("msg2");
+                    Log.d(TAG, msg2);
+                    extras.putString("message", msg2);
+
+                    //extras.putString("sender", senderId);
+                    deleteFromServer(key);
+
+                }
+
+                intent.putExtras(extras);
+                startService(intent);
             }
-
-            intent.putExtras(extras);
-            startService(intent);
         }
 
     }

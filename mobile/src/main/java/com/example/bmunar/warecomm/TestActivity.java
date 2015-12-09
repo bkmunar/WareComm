@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class TestActivity extends Activity {
     private static final String TAG = "TestActivity";
-    private String features = "indv";
+    private String features = "all";
     private String code = "adam";
     private String dpt = "tools";
     private String indv = "dana";
@@ -23,8 +23,26 @@ public class TestActivity extends Activity {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
 
-        //SEND
-        Intent intent = new Intent(this, ListenerService.class);
+//        Intent intent = new Intent(this, ListenerService.class);
+//        Bundle extras = new Bundle();
+//        extras.putString("features", features); //all dpt indv
+//        if (Objects.equals(features, "all")) {
+//            extras.putString("code", code); //adam black blue brown
+//            Log.d(TAG, code);
+//        } else if (Objects.equals(features, "dpt")) {
+//            extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
+//            extras.putString("message", message);
+//            Log.d(TAG, dpt);
+//        } else if (Objects.equals(features, "indv")) {
+//            extras.putString("indv", indv); //dana, jackson
+//            extras.putString("message", message);
+//            Log.d(TAG, indv);
+//        }
+//        intent.putExtras(extras);
+//        startService(intent);
+
+
+        Intent intent = new Intent(this, PostServerService.class);
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
         if (Objects.equals(features, "all")) {
@@ -32,7 +50,6 @@ public class TestActivity extends Activity {
             Log.d(TAG, code);
         } else if (Objects.equals(features, "dpt")) {
             extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
-            extras.putString("message", message);
             Log.d(TAG, dpt);
         } else if (Objects.equals(features, "indv")) {
             extras.putString("indv", indv); //dana, jackson

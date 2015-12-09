@@ -158,7 +158,7 @@ public class ListenerService extends WearableListenerService {
             Bundle extras = new Bundle();
             extras.putString("features", "indv"); //all dpt indv
 
-            final String[] splitStringArray = message.split(" ");
+            final String[] splitStringArray = message.split(" "); ///THIS WILL NOT WORK FOR SENTENCES
             String a = splitStringArray[0];
             String b = splitStringArray[1];
 

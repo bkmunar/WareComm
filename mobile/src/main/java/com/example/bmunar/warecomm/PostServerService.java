@@ -19,7 +19,7 @@ import java.util.Objects;
  * Updated by akester on 11/28/15.
  */
 public class PostServerService extends Service {
-    private static final String TAG = "GetServerService";
+    private static final String TAG = "PostServerService";
     public static final String PREFS_NAME = "MyApp_Settings";
     private HttpURLConnection urlConnection;
 
@@ -27,9 +27,11 @@ public class PostServerService extends Service {
     private String code;
     private String dpt;
     private String indv;
-    private String sender = "jackson";
-    private String newFeatures = "all"; //HARD CODED FOR TESTING
+    private String message;
+    private String finalURL;
 
+    final String myURL = "http://162.243.156.197:3002/post?";
+    final String senderId = "&id=dana";
 
     private static final int INTERVAL = 3000;
     private static final int SECOND = 1000;
@@ -47,20 +49,76 @@ public class PostServerService extends Service {
         Bundle extras = intent.getExtras();
         if (extras!=null) {
             features = intent.getStringExtra("features"); //all dpt indv
+            final String paramOne = "dst=" + features;
+
             Log.d(TAG, features);
             if (Objects.equals(features, "all")) {
                 code = intent.getStringExtra("code"); //adam black blue brown
                 Log.d(TAG, code);
+
+                final String paramTwo = "&msg1=" + code;
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(senderId);
+                Log.d(TAG, finalURL);
+
             } else if (Objects.equals(features, "dpt")) {
                 dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
                 Log.d(TAG, dpt);
+
+                final String paramTwo = "&msg1=" + dpt;
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(senderId);
+
             }else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv"); //dana, jackson
+                message = intent.getStringExtra("message"); //dana, jackson
                 Log.d(TAG, indv);
+                Log.d(TAG, message);
+
+                final String paramTwo = "&msg1=" + indv;
+                final String paramThree = "&msg2=" + message;
+
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(paramThree).concat(senderId);
             }
         }
-
+        createAndStartPostServerService(finalURL);
         return START_STICKY;
+    }
+
+
+    public void createAndStartPostServerService(final String finalURL){
+        //final String DEST = dst;
+        Log.d(TAG, finalURL);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    //URL urlToRequest = new URL("http://162.243.156.197:3002/post?dst=" + DEST);
+                    URL urlToRequest = new URL(finalURL);
+                    HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestMethod("POST");
+//                    String postParameters = "dst=1&msg=merp";
+//                    urlConnection.setRequestProperty("Content-Type", "application/json");
+//                    urlConnection.setFixedLengthStreamingMode(postParameters.getBytes().length);
+//                    PrintWriter out = new PrintWriter(urlConnection.getOutputStream());
+//                    out.print("dst=1&msg=merp");
+//                    out.close();
+
+                    int statusCode = urlConnection.getResponseCode();
+                    if (statusCode != HttpURLConnection.HTTP_OK) {
+                        Log.d(TAG, "NOT WORKING");
+                    }else {
+                        Log.d(TAG, "WORKING");
+                    }
+                } catch (Exception e) {
+
+                }finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+            }
+        }
+        ).start();
     }
 
     @Override
@@ -89,41 +147,5 @@ public class PostServerService extends Service {
             }
         }
         return sb.toString();
-    }
-
-
-    public void postToServer(String dst){
-        final String DEST = dst;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    URL urlToRequest = new URL("http://162.243.156.197:3002/post?dst=" + DEST);
-                    HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
-                    urlConnection.setDoOutput(true);
-                    urlConnection.setRequestMethod("POST");
-                    String postParameters = "dst=1&msg=merp";
-                    urlConnection.setRequestProperty("Content-Type", "application/json");
-                    urlConnection.setFixedLengthStreamingMode(postParameters.getBytes().length);
-                    PrintWriter out = new PrintWriter(urlConnection.getOutputStream());
-                    out.print("dst=1&msg=merp");
-                    out.close();
-
-                    int statusCode = urlConnection.getResponseCode();
-                    if (statusCode != HttpURLConnection.HTTP_OK) {
-                        Log.d("NOT WORKING", "???????");
-                    }else {
-                        Log.d("WORKING", "???????");
-                    }
-                } catch (Exception e) {
-
-                }finally {
-                    if (urlConnection != null) {
-                        urlConnection.disconnect();
-                    }
-                }
-            }
-        }
-        ).start();
     }
 }
