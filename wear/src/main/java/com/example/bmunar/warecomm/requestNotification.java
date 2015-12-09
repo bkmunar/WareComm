@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,9 +22,6 @@ public class requestNotification extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
-        iv.setImageResource(R.drawable.requestnotification);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -35,6 +33,29 @@ public class requestNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (dpt.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else if (dpt.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else if (dpt.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        }
+
+        Button button1 = (Button)findViewById(R.id.Cancel);
+        button1.setX(73);
+        button1.setY(170);
+//        button1.setBackgroundColor(Color.TRANSPARENT);
+
+        Button button2 = (Button)findViewById(R.id.Ping);
+        button2.setX(145);
+        button2.setY(170);
+//        button2.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -72,5 +93,12 @@ public class requestNotification extends Activity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
+    }
+
+    public void touchCancel(View view){
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DepartmentList.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

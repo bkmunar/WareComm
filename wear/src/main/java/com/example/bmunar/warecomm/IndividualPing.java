@@ -22,9 +22,6 @@ public class IndividualPing extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_ping);
 
-        ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
-        iv.setImageResource(R.drawable.individualping);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -37,6 +34,19 @@ public class IndividualPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
+            iv.setImageResource(R.drawable.individualping);
+        } else if (indv.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
+            iv.setImageResource(R.drawable.individualping);
+        } else if (indv.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
+            iv.setImageResource(R.drawable.individualping);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
+            iv.setImageResource(R.drawable.individualping);
+        }
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);

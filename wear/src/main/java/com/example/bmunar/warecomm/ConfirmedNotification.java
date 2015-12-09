@@ -21,9 +21,6 @@ public class ConfirmedNotification extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmed_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
-        iv.setImageResource(R.drawable.confirmednotification);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -36,6 +33,19 @@ public class ConfirmedNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (dpt.equals("adam")) {
+            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
+            iv.setImageResource(R.drawable.confirmednotification);
+        } else if (dpt.equals("black")) {
+            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
+            iv.setImageResource(R.drawable.confirmednotification);
+        } else if (dpt.equals("blue")) {
+            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
+            iv.setImageResource(R.drawable.confirmednotification);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
+            iv.setImageResource(R.drawable.confirmednotification);
+        }
 
     }
 

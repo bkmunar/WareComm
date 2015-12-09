@@ -21,9 +21,6 @@ public class DepartmentPing extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_ping);
 
-        ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
-        iv.setImageResource(R.drawable.departmentping);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -35,6 +32,19 @@ public class DepartmentPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (dpt.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
+            iv.setImageResource(R.drawable.departmentping);
+        } else if (dpt.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
+            iv.setImageResource(R.drawable.departmentping);
+        } else if (dpt.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
+            iv.setImageResource(R.drawable.departmentping);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.departmentPingImage);
+            iv.setImageResource(R.drawable.departmentping);
+        }
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);

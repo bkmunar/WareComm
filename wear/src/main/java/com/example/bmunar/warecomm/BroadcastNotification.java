@@ -18,9 +18,6 @@ public class BroadcastNotification extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_notification);
 
-        ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
-        iv.setImageResource(R.drawable.broadcastnotification);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -32,6 +29,19 @@ public class BroadcastNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (code.equals("adam")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else if (code.equals("black")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else if (code.equals("blue")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        }
     }
 
     @Override

@@ -21,9 +21,6 @@ public class IndividualRequest extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_request);
 
-        ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
-        iv.setImageResource(R.drawable.individualrequest);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -36,6 +33,19 @@ public class IndividualRequest extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else if (indv.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else if (indv.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        }
     }
 
     @Override
