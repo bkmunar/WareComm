@@ -98,7 +98,7 @@ public class ReplyPing extends Activity {
 
     public void touchCancel(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, IndividualList.class);
+        Intent intent = new Intent(this, CreateReply.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
