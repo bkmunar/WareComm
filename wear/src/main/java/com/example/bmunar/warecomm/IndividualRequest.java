@@ -3,6 +3,7 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,14 +11,41 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class IndividualRequest extends Activity {
+    private static final String TAG = "IndividualRequest";
+    private String features;
+    private String indv;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_request);
 
-        ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
-        iv.setImageResource(R.drawable.individualrequest);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            indv = intent.getStringExtra("indv");
+            message = intent.getStringExtra("message");
+            Log.d(TAG, features);
+            Log.d(TAG, indv);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else if (indv.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else if (indv.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.individualRequestImage);
+            iv.setImageResource(R.drawable.individualrequest);
+        }
     }
 
     @Override
@@ -45,6 +73,12 @@ public class IndividualRequest extends Activity {
     public void replyToRequest(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
         Intent intent = new Intent(this, CreateReply.class);
+
+        Bundle extras = new Bundle();
+        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("indv", "dana"); //dana, jackson
+        intent.putExtras(extras);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

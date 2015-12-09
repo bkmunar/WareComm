@@ -3,14 +3,17 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class IndividualList extends Activity {
+    private static final String TAG = "IndividualList";
 
     private float x1,x2;
     static final int MIN_DISTANCE = 5;
@@ -84,8 +87,15 @@ public class IndividualList extends Activity {
     }
 
     public void selectIndividual(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
+        Log.d(TAG, "selectIndividual");
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CreateMessage.class);
+
+        Bundle extras = new Bundle();
+        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("indv", "dana"); //dana, jackson
+        intent.putExtras(extras);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

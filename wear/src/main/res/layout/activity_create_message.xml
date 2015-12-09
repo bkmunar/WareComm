@@ -12,4 +12,28 @@
         android:id="@+id/createMessageImage"
         android:layout_gravity="center"
         android:onClick="createMessage"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Adam"
+        android:onClick="createMessage"
+        android:id="@+id/Adam"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Black"
+        android:onClick="createMessage"
+        android:id="@+id/Black"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Blue"
+        android:onClick="createMessage"
+        android:id="@+id/Blue"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Brown"
+        android:onClick="createMessage"
+        android:id="@+id/Brown"/>
 </FrameLayout>

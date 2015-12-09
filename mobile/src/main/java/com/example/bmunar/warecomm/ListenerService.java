@@ -22,11 +22,16 @@ import java.util.Objects;
 public class ListenerService extends WearableListenerService {
     private static final String TAG = "ListenerService";
     private GoogleApiClient mApiClient;
-    private static final String START_ACTIVITY_QUAKE = "/start_activity_quake"; //CHANGE
-    private static final String START_ACTIVITY_PHOTO = "/start_activity_photo"; //CHANGE
-    private static final String START_ACTIVITY = "/start_activity";
-    private String message;
-    private String sender;
+
+    private static final String SEND_MESSAGE_ALL = "/send_message_all";
+    private static final String SEND_MESSAGE_DPT = "/send_message_dpt";
+    private static final String SEND_MESSAGE_INDV = "/send_message_indv";
+    private String features;
+    private String code;
+    private String dpt;
+    private String indv;
+    private String message1;
+    private String message2;
 
 
     @Override
@@ -54,9 +59,20 @@ public class ListenerService extends WearableListenerService {
 
         Bundle extras = intent.getExtras();
         if (extras!=null) {
-            message = intent.getStringExtra("message");
-            sender = intent.getStringExtra("sender");
-            Log.d(TAG, message);
+            features = intent.getStringExtra("features");
+            Log.d(TAG, features);
+            if (Objects.equals(features, "all")) {
+                code = intent.getStringExtra("code");
+                Log.d(TAG, code);
+            } else if (Objects.equals(features, "dpt")) {
+                dpt = intent.getStringExtra("dpt");
+                message2 = intent.getStringExtra("message");
+                Log.d(TAG, dpt);
+            } else if (Objects.equals(features, "indv")){
+                indv = intent.getStringExtra("indv");
+                message1 = intent.getStringExtra("message");
+                Log.d(TAG, indv);
+            }
         }
         createAndStartTimer();
         return START_STICKY;
@@ -70,12 +86,14 @@ public class ListenerService extends WearableListenerService {
             public void run() {
                 mApiClient.connect();
                 //CHANGE THESE FOR SPECIFIC MESSAGES
-                if (Objects.equals(sender, "LocationService")) {//THIS WONT DO ANYTHING
-                    sendMessage(START_ACTIVITY_QUAKE, message);
-                }else if (Objects.equals(sender, "PhotoActivity")) {//THIS WONT DO ANYTHING
-                    sendMessage(START_ACTIVITY_PHOTO, message);
+                if (Objects.equals(features, "all")) {
+                    sendMessage(SEND_MESSAGE_ALL, code);
+                }else if (Objects.equals(features, "dpt")) {
+                    final String doubleInfo = dpt.concat(" ").concat(message2);
+                    sendMessage(SEND_MESSAGE_DPT, doubleInfo);
                 }else {
-                    sendMessage(START_ACTIVITY, message);//GENERIC MESSAGE WITH NO SPECIFIC SOURCE
+                    final String doubleInfo = indv.concat(" ").concat(message1);
+                    sendMessage(SEND_MESSAGE_INDV, doubleInfo);
                 }
             }
         }).start();
@@ -107,32 +125,46 @@ public class ListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d(TAG, "onMessageReceived");
 
-        if( messageEvent.getPath().equalsIgnoreCase( START_ACTIVITY ) ) {
+        if( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_ALL ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
+            Intent intent = new Intent(this, PostServerService.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "all"); //all dpt indv
+            extras.putString("code", message); //adam black blue brown
+            intent.putExtras(extras);
+            startService(intent);
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT ) ) {
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, PostServerService.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "dpt"); //all dpt indv
+            extras.putString("dpt", message); //appliances, bath, electrical, flooring
+            intent.putExtras(extras);
+            startService(intent);
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, PostServerService.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "indv"); //all dpt indv
 
-            Intent intent = new Intent(this, RegisterPage.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("message", message);
-            startActivity(intent);
+            final String[] splitStringArray = message.split(" "); ///THIS WILL NOT WORK FOR SENTENCES
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
 
-//            if (Objects.equals(message, "stop")) {
-//                Intent intent = new Intent(this, HomePage.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
-//            else if (Objects.equals(message, "photo")){
-//                Intent intent = new Intent(this, HomePage.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("MESSAGE", message);
-//                startActivity(intent);
-//            }
+            extras.putString("indv", a); //dana, jackson
+            extras.putString("message", b);
+
+            intent.putExtras(extras);
+            startService(intent);
         } else {
             super.onMessageReceived( messageEvent );
         }
 
     }
+
 
 
 }

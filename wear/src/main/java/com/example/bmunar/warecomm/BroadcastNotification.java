@@ -3,21 +3,45 @@ package com.example.bmunar.warecomm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BroadcastNotification extends Activity {
+    private static final String TAG = "BroadcastNotification";
+    private String features;
+    private String code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.broadcastNotificationImage);
-        iv.setImageResource(R.drawable.broadcastnotification);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras!=null) {
+            features = intent.getStringExtra("features");
+            code = intent.getStringExtra("code"); //adam black blue brown
+            Log.d(TAG, features);
+            Log.d(TAG, code);
+        }
+
+        //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (code.equals("adam")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else if (code.equals("black")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else if (code.equals("blue")) {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        } else {
+            ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
+            iv.setImageResource(R.drawable.broadcastnotification);
+        }
     }
 
     @Override
@@ -41,12 +65,4 @@ public class BroadcastNotification extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void returnBack(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, BroadcastCodes.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
 }

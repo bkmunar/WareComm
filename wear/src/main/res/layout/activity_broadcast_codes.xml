@@ -10,6 +10,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/broadcastCodesImage"
-        android:layout_gravity="center"
-        android:onClick="broadcastCode"/>
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Adam"
+        android:onClick="broadcastCode"
+        android:id="@+id/Adam"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Black"
+        android:onClick="broadcastCode"
+        android:id="@+id/Black"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Blue"
+        android:onClick="broadcastCode"
+        android:id="@+id/Blue"/>
+    <Button
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:text="Brown"
+        android:onClick="broadcastCode"
+        android:id="@+id/Brown"/>
 </FrameLayout>
