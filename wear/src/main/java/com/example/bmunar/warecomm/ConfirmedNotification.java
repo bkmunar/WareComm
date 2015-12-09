@@ -33,13 +33,7 @@ public class ConfirmedNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (dpt.equals("adam")) {
-            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
-            iv.setImageResource(R.drawable.confirmednotification);
-        } else if (dpt.equals("black")) {
-            ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
-            iv.setImageResource(R.drawable.confirmednotification);
-        } else if (dpt.equals("blue")) {
+        if (message.equals("Cancel")) {
             ImageView iv = (ImageView)findViewById(R.id.confirmedNotificationImage);
             iv.setImageResource(R.drawable.confirmednotification);
         } else {

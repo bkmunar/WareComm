@@ -34,7 +34,7 @@ public class GetServerService extends Service {
     private String dpt;
     private String indv;
 
-    final String receiverId = "bryan";
+    final String receiverId = "bryan"; // MUST BE SAME OF YOUR SENDER ID!!
 
 
     private static final int INTERVAL = 3000;
@@ -145,7 +145,35 @@ public class GetServerService extends Service {
                     //extras.putString("sender", senderId);
                     deleteFromServer(key);
 
-                } else if (key.equals("indv")) {
+                }  else if (key.equals("dpt2")) {
+                extras.putString("features", key); //all dpt indv
+
+                String msg1 = mainObject.getJSONObject(key).getString("msg1");
+                Log.d(TAG, msg1);
+                extras.putString("dpt", msg1);//appliances, bath, electrical, flooring
+
+                String msg2 = mainObject.getJSONObject(key).getString("msg2");
+                Log.d(TAG, msg2);
+                extras.putString("message", msg2);
+
+                //extras.putString("sender", senderId);
+                deleteFromServer(key);
+
+            } else if (key.equals("indv")) {
+                    extras.putString("features", key); //all dpt indv
+
+                    String msg1 = mainObject.getJSONObject(key).getString("msg1");
+                    Log.d(TAG, msg1);
+                    extras.putString("indv", msg1); //dana, jackson
+
+                    String msg2 = mainObject.getJSONObject(key).getString("msg2");
+                    Log.d(TAG, msg2);
+                    extras.putString("message", msg2);
+
+                    //extras.putString("sender", senderId);
+                    deleteFromServer(key);
+
+                } else if (key.equals("indv2")) {
                     extras.putString("features", key); //all dpt indv
 
                     String msg1 = mainObject.getJSONObject(key).getString("msg1");
@@ -202,7 +230,7 @@ public class GetServerService extends Service {
             @Override
             public void run() {
                 try{
-                    URL urlToRequest = new URL("http://162.243.156.197:3002/post?dst=" + DEST);
+                    URL urlToRequest = new URL("http://162.243.156.197:3002/del?dst=" + DEST);
                     HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestMethod("POST");

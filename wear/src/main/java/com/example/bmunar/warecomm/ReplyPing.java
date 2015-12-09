@@ -17,6 +17,8 @@ public class ReplyPing extends Activity {
     private String indv;
     private String message;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +37,13 @@ public class ReplyPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (message.equals("okay")) {
+        if (message.equals("Adam")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
             iv.setImageResource(R.drawable.individualreplypingokay);
-        } else if (message.equals("5 minutes")) {
+        } else if (message.equals("Black")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
             iv.setImageResource(R.drawable.individualreplyping5more);
-        } else if (message.equals("10 minutes")) {
+        } else if (message.equals("Blue")) {
             ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
             iv.setImageResource(R.drawable.individualreplyping10more);
         } else {
@@ -87,13 +89,18 @@ public class ReplyPing extends Activity {
         Intent intent = new Intent(this, ListenerService.class);
 
         Bundle extras = new Bundle();
-        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("features", "indv2"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
         extras.putString("message", message);
         intent.putExtras(extras);
+        Log.d(TAG, features);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startService(intent);
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, IndividualList.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
     }
 
     public void touchCancel(View view){

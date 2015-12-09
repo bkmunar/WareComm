@@ -15,7 +15,7 @@ public class CreateMessage extends Activity {
     private static final String TAG = "CreateMessage";
     private String features;
     private String indv;
-    private String message;
+    private int message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,16 @@ public class CreateMessage extends Activity {
         extras.putString("features", "indv"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
 
-        extras.putString("message", ((Button) view).getText().toString());
+        switch (((Button) view).getText().toString()) {
+            case "call me": message = 1;
+                break;
+            case "needed at cs": message = 2;
+                break;
+            case "needed at tools": message = 3;
+                break;
+            default: message = 4;
+        }
+        extras.putString("message", Integer.toString(message));
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

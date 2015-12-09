@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -33,13 +34,13 @@ public class BroadcastPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (code.equals("adam")) {
+        if (code.equals("Adam")) {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
             iv.setImageResource(R.drawable.broadcastping);
-        } else if (code.equals("black")) {
+        } else if (code.equals("Black")) {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
             iv.setImageResource(R.drawable.codeblackping);
-        } else if (code.equals("blue")) {
+        } else if (code.equals("Blue")) {
             ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
             iv.setImageResource(R.drawable.codeblueping);
         } else {
@@ -50,12 +51,15 @@ public class BroadcastPing extends Activity {
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);
         button1.setY(170);
-//        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setTextColor(Color.TRANSPARENT);
 
         Button button2 = (Button)findViewById(R.id.Ping);
         button2.setX(145);
         button2.setY(170);
-//        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setTextColor(Color.TRANSPARENT);
+
     }
 
     @Override

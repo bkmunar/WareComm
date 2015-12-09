@@ -31,13 +31,13 @@ public class BroadcastNotification extends Activity {
         }
 
         // BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (code.equals("adam")) {
+        if (code.equals("Adam")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
             iv.setImageResource(R.drawable.broadcastnotification);
-        } else if (code.equals("black")) {
+        } else if (code.equals("Black")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
             iv.setImageResource(R.drawable.broadcastnotificationpingblack);
-        } else if (code.equals("blue")) {
+        } else if (code.equals("Blue")) {
             ImageView iv = (ImageView) findViewById(R.id.broadcastNotificationImage);
             iv.setImageResource(R.drawable.broadcastnotificationpingblue);
         } else {
