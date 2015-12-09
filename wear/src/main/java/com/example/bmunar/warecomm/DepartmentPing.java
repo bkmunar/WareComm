@@ -105,10 +105,4 @@ public class DepartmentPing extends Activity {
         startActivity(intent2);
 
     }
-    public void touchCancel(View view){
-        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, DepartmentList.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
 }

@@ -16,7 +16,7 @@
         android:layout_height="40dp"
         android:layout_width="40dp"
         android:text="Cancel"
-        android:onClick="touchCancel"
+        android:onClick="departmentPing"
         android:id="@+id/Cancel"/>
     <Button
         android:layout_height="40dp"
