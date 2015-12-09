@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class CreateReply extends Activity {
@@ -50,6 +51,9 @@ public class CreateReply extends Activity {
         button4.setX(135);
         button4.setY(155);
 //        button4.setBackgroundColor(Color.TRANSPARENT);
+
+        ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
+        iv.setImageResource(R.drawable.createreply);
     }
 
     @Override

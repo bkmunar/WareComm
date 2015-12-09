@@ -10,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
@@ -70,7 +69,28 @@ public class PostServerService extends Service {
 
                 finalURL = myURL.concat(paramOne).concat(paramTwo).concat(paramThree).concat(senderId);
 
-            }else if (Objects.equals(features, "indv")){
+            } else if (Objects.equals(features, "indv")) {
+                indv = intent.getStringExtra("indv"); //dana, jackson
+                message = intent.getStringExtra("message"); //dana, jackson
+                Log.d(TAG, indv);
+                Log.d(TAG, message);
+
+                final String paramTwo = "&msg1=" + indv;
+                final String paramThree = "&msg2=" + message;
+
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(paramThree).concat(senderId);
+            } else if (Objects.equals(features, "dpt2")) {
+                dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+                message = intent.getStringExtra("message"); //dana, jackson
+                Log.d(TAG, dpt);
+
+                final String paramTwo = "&msg1=" + dpt;
+                final String paramThree = "&msg2=" + message;
+
+                finalURL = myURL.concat(paramOne).concat(paramTwo).concat(paramThree).concat(senderId);
+
+
+            } else if (Objects.equals(features, "indv2")) {
                 indv = intent.getStringExtra("indv"); //dana, jackson
                 message = intent.getStringExtra("message"); //dana, jackson
                 Log.d(TAG, indv);

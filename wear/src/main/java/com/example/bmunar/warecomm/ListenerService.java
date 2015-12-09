@@ -24,7 +24,9 @@ public class ListenerService extends WearableListenerService {
     private GoogleApiClient mApiClient;
     private static final String SEND_MESSAGE_ALL = "/send_message_all";
     private static final String SEND_MESSAGE_DPT = "/send_message_dpt";
+    private static final String SEND_MESSAGE_DPT2 = "/send_message_dpt2";
     private static final String SEND_MESSAGE_INDV = "/send_message_indv";
+    private static final String SEND_MESSAGE_INDV2 = "/send_message_indv2";
     private String features;
     private String code;
     private String dpt;
@@ -67,11 +69,19 @@ public class ListenerService extends WearableListenerService {
                 dpt = intent.getStringExtra("dpt");
                 message2 = intent.getStringExtra("message");
                 Log.d(TAG, dpt);
+            }else if (Objects.equals(features, "dpt2")){
+                dpt = intent.getStringExtra("dpt");
+                message2 = intent.getStringExtra("message");
+                Log.d(TAG, dpt);
             } else if (Objects.equals(features, "indv")){
                 indv = intent.getStringExtra("indv");
                 message1 = intent.getStringExtra("message");
                 Log.d(TAG, indv);
-                Log.d(TAG, message1);
+            } else if (Objects.equals(features, "indv2")){
+                indv = intent.getStringExtra("indv");
+                message1 = intent.getStringExtra("message");
+                Log.d(TAG, indv);
+                Log.d(TAG, "This is the right one");
             }
         }
         createAndStartTimer();
@@ -89,11 +99,17 @@ public class ListenerService extends WearableListenerService {
                 if (Objects.equals(features, "all")) {
                     sendMessage(SEND_MESSAGE_ALL, code);
                 }else if (Objects.equals(features, "dpt")) {
-                    final String doubleInfo = dpt.concat(" ").concat(message2);
+                    final String doubleInfo = dpt.concat("X").concat(message2);
                     sendMessage(SEND_MESSAGE_DPT, doubleInfo);
-                }else {
-                    final String doubleInfo = indv.concat(" ").concat(message1);
+                }else if (Objects.equals(features, "dpt2")) {
+                    final String doubleInfo = dpt.concat("X").concat(message2);
+                    sendMessage(SEND_MESSAGE_DPT2, doubleInfo);
+                }else if (Objects.equals(features, "indv")){
+                    final String doubleInfo = indv.concat("X").concat(message1);
                     sendMessage(SEND_MESSAGE_INDV, doubleInfo);
+                }else if (Objects.equals(features, "indv2")){
+                    final String doubleInfo = indv.concat("X").concat(message1);
+                    sendMessage(SEND_MESSAGE_INDV2, doubleInfo);
                 }
             }
         }).start();
@@ -144,7 +160,7 @@ public class ListenerService extends WearableListenerService {
             Bundle extras = new Bundle();
             extras.putString("features", "dpt"); //all dpt indv
 
-            final String[] splitStringArray = message.split(" ");
+            final String[] splitStringArray = message.split("X");
             String a = splitStringArray[0];
             String b = splitStringArray[1];
 
@@ -154,18 +170,54 @@ public class ListenerService extends WearableListenerService {
             intent.putExtras(extras);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ) {
             String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Log.d(TAG, message);
             Intent intent = new Intent(this, IndividualRequest.class);
             Bundle extras = new Bundle();
             extras.putString("features", "indv"); //all dpt indv
 
-            final String[] splitStringArray = message.split(" "); ///THIS WILL NOT WORK FOR SENTENCES
+            final String[] splitStringArray = message.split("X"); ///THIS WILL NOT WORK FOR SENTENCES
             String a = splitStringArray[0];
             String b = splitStringArray[1];
 
             extras.putString("indv", a); //dana, jackson
+            extras.putString("message", b);
+
+            intent.putExtras(extras);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV2 ) ) {
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, ReplyNotification.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "indv"); //all dpt indv
+
+            final String[] splitStringArray = message.split("X"); ///THIS WILL NOT WORK FOR SENTENCES
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("indv", a); //dana, jackson
+            extras.putString("message", b);
+
+            intent.putExtras(extras);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_DPT2 ) ){
+            String message = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, message);
+            Intent intent = new Intent(this, ConfirmedNotification.class);
+            Bundle extras = new Bundle();
+            extras.putString("features", "dpt"); //all dpt indv
+
+            final String[] splitStringArray = message.split("X");
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("dpt", a); //dana, jackson
             extras.putString("message", b);
 
             intent.putExtras(extras);

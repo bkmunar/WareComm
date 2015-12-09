@@ -17,6 +17,8 @@ public class ReplyPing extends Activity {
     private String indv;
     private String message;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +89,13 @@ public class ReplyPing extends Activity {
         Intent intent = new Intent(this, ListenerService.class);
 
         Bundle extras = new Bundle();
-        extras.putString("features", "indv"); //all dpt indv
+        extras.putString("features", "indv2"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
         extras.putString("message", message);
         intent.putExtras(extras);
+        Log.d(TAG, features);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startService(intent);
     }
 
     public void touchCancel(View view){

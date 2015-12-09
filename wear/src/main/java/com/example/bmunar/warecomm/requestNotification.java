@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class requestNotification extends Activity {
     private static final String TAG = "requestNotification";
-    private String features;
+    private String features = "dpt2";
     private String dpt;
     private String message1;
     private String message2;
@@ -27,7 +27,7 @@ public class requestNotification extends Activity {
         Bundle extras = intent.getExtras();
 
         if (extras!=null) {
-            features = intent.getStringExtra("features"); //all dpt indv
+            //features = intent.getStringExtra("features"); //all dpt indv
             dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
             message1 = intent.getStringExtra("message");
             Log.d(TAG, features);
@@ -51,12 +51,12 @@ public class requestNotification extends Activity {
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);
-        button1.setY(170);
+        button1.setY(180);
 //        button1.setBackgroundColor(Color.TRANSPARENT);
 
         Button button2 = (Button)findViewById(R.id.Ping);
         button2.setX(145);
-        button2.setY(170);
+        button2.setY(180);
 //        button2.setBackgroundColor(Color.TRANSPARENT);
     }
 
