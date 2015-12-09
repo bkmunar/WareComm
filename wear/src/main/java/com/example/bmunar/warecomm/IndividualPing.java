@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -34,13 +35,13 @@ public class IndividualPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
-        if (message.equals("call me")) {
+        if (message.equals("1")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
             iv.setImageResource(R.drawable.individualping);
-        } else if (message.equals("needed at cs")) {
+        } else if (message.equals("2")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
             iv.setImageResource(R.drawable.individualpingcs);
-        } else if (message.equals("needed at tools")) {
+        } else if (message.equals("3")) {
             ImageView iv = (ImageView)findViewById(R.id.individualPingImage);
             iv.setImageResource(R.drawable.individualpingtools);
         } else {
@@ -51,12 +52,15 @@ public class IndividualPing extends Activity {
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);
         button1.setY(170);
-//        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setTextColor(Color.TRANSPARENT);
 
         Button button2 = (Button)findViewById(R.id.Ping);
         button2.setX(145);
         button2.setY(170);
-//        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setTextColor(Color.TRANSPARENT);
+
     }
 
     @Override
@@ -96,19 +100,15 @@ public class IndividualPing extends Activity {
 
         startService(intent);
 
-
-//        //CODE TO FORCE DEMO FOR NOTIFICATION
-//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, IndividualRequest.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
-//
-
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, IndividualList.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
 
     }
     public void touchCancel(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, CreateMessage.class);
+        Intent intent = new Intent(this, IndividualList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
