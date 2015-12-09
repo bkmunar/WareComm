@@ -31,6 +31,7 @@ public class ReplyPing extends Activity {
             message = intent.getStringExtra("message");
             Log.d(TAG, features);
             Log.d(TAG, indv);
+            Log.d(TAG, message);
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
@@ -83,7 +84,7 @@ public class ReplyPing extends Activity {
 
     public void replyPing(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show ();
-        Intent intent = new Intent(this, ReplyNotification.class);
+        Intent intent = new Intent(this, ListenerService.class);
 
         Bundle extras = new Bundle();
         extras.putString("features", "indv"); //all dpt indv

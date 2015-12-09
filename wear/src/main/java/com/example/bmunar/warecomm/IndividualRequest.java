@@ -77,6 +77,7 @@ public class IndividualRequest extends Activity {
         Bundle extras = new Bundle();
         extras.putString("features", "indv"); //all dpt indv
         extras.putString("indv", "dana"); //dana, jackson
+        extras.putString("message", "message"); //dana, jackson
         intent.putExtras(extras);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
