@@ -33,9 +33,20 @@ public class CreateReply extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("adam")) {
+            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
+            iv.setImageResource(R.drawable.createreply);
+        } else if (indv.equals("black")) {
+            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
+            iv.setImageResource(R.drawable.createreply);
+        } else if (indv.equals("blue")) {
+            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
+            iv.setImageResource(R.drawable.createreply);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
+            iv.setImageResource(R.drawable.createreply);
+        }
 
-        ImageView iv = (ImageView)findViewById(R.id.createReplyImage);
-        iv.setImageResource(R.drawable.createreply);
         Button button1 = (Button)findViewById(R.id.Adam);
         button1.setX(35);
         button1.setY(55);

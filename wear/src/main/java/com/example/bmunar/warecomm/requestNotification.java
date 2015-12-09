@@ -21,9 +21,6 @@ public class requestNotification extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
-        iv.setImageResource(R.drawable.requestnotification);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -35,6 +32,19 @@ public class requestNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (dpt.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else if (dpt.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else if (dpt.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.requestNotificationImage);
+            iv.setImageResource(R.drawable.requestnotification);
+        }
     }
 
     @Override

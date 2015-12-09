@@ -21,9 +21,6 @@ public class ReplyNotification extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply_notification);
 
-        ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
-        iv.setImageResource(R.drawable.replynotification);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -36,6 +33,19 @@ public class ReplyNotification extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
+            iv.setImageResource(R.drawable.replynotification);
+        } else if (indv.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
+            iv.setImageResource(R.drawable.replynotification);
+        } else if (indv.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
+            iv.setImageResource(R.drawable.replynotification);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.replyNotificationImage);
+            iv.setImageResource(R.drawable.replynotification);
+        }
     }
 
     @Override

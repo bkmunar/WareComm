@@ -21,8 +21,6 @@ public class BroadcastPing extends Activity {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast_ping);
-        ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
-        iv.setImageResource(R.drawable.broadcastping);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -35,6 +33,19 @@ public class BroadcastPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (code.equals("adam")) {
+            ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
+            iv.setImageResource(R.drawable.broadcastping);
+        } else if (code.equals("black")) {
+            ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
+            iv.setImageResource(R.drawable.broadcastping);
+        } else if (code.equals("blue")) {
+            ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
+            iv.setImageResource(R.drawable.broadcastping);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.broadcastPingImage);
+            iv.setImageResource(R.drawable.broadcastping);
+        }
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);

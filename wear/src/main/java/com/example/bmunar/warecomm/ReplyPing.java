@@ -21,10 +21,6 @@ public class ReplyPing extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply_ping);
 
-        ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
-        iv.setImageResource(R.drawable.replyping);
-
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -37,6 +33,19 @@ public class ReplyPing extends Activity {
         }
 
         //BRYAN THIS IS THE CODE THAT WILL TELL YOU WHAT IMAGE TO DISPLAY ON THIS ACTIVITY
+        if (indv.equals("appliances")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
+            iv.setImageResource(R.drawable.replyping);
+        } else if (indv.equals("bath")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
+            iv.setImageResource(R.drawable.replyping);
+        } else if (indv.equals("electrical")) {
+            ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
+            iv.setImageResource(R.drawable.replyping);
+        } else {
+            ImageView iv = (ImageView)findViewById(R.id.replyPingImage);
+            iv.setImageResource(R.drawable.replyping);
+        }
     }
 
     @Override
