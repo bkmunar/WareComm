@@ -51,12 +51,12 @@ public class requestNotification extends Activity {
 
         Button button1 = (Button)findViewById(R.id.Cancel);
         button1.setX(73);
-        button1.setY(180);
+        button1.setY(200);
 //        button1.setBackgroundColor(Color.TRANSPARENT);
 
         Button button2 = (Button)findViewById(R.id.Ping);
         button2.setX(145);
-        button2.setY(180);
+        button2.setY(200);
 //        button2.setBackgroundColor(Color.TRANSPARENT);
     }
 
@@ -84,16 +84,15 @@ public class requestNotification extends Activity {
 
     public void confirmRequest(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, ConfirmedNotification.class);
+        Intent intent = new Intent(this, ListenerService.class);
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
         extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
-        extras.putString("message", message2); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        extras.putString("message", ((Button) view).getText().toString());
         intent.putExtras(extras);
         Log.d(TAG, features);
         Log.d(TAG, dpt);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startService(intent);
 
     }
 

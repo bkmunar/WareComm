@@ -2,6 +2,7 @@ package com.example.bmunar.warecomm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,22 +30,30 @@ public class DepartmentList extends Activity {
         Button button1 = (Button)findViewById(R.id.Appliances);
         button1.setX(35);
         button1.setY(55);
-//        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setBackgroundColor(Color.TRANSPARENT);
+        button1.setTextColor(Color.TRANSPARENT);
+
 
         Button button2 = (Button)findViewById(R.id.Bath);
         button2.setX(135);
         button2.setY(55);
-//        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setBackgroundColor(Color.TRANSPARENT);
+        button2.setTextColor(Color.TRANSPARENT);
+
 
         Button button3 = (Button)findViewById(R.id.Electrical);
         button3.setX(35);
         button3.setY(155);
-//        button3.setBackgroundColor(Color.TRANSPARENT);
+        button3.setBackgroundColor(Color.TRANSPARENT);
+        button3.setTextColor(Color.TRANSPARENT);
+
 
         Button button4 = (Button)findViewById(R.id.Flooring);
         button4.setX(135);
         button4.setY(155);
-//        button4.setBackgroundColor(Color.TRANSPARENT);
+        button4.setBackgroundColor(Color.TRANSPARENT);
+        button4.setTextColor(Color.TRANSPARENT);
+
     }
 
     @Override
