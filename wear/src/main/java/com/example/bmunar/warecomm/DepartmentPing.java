@@ -15,6 +15,7 @@ public class DepartmentPing extends Activity {
     private static final String TAG = "DepartmentPing";
     private String features;
     private String dpt;
+    private String message = "blank";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class DepartmentPing extends Activity {
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
         extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
+        extras.putString("message", message);
         intent.putExtras(extras);
         Log.d(TAG, features);
         Log.d(TAG, dpt);

@@ -141,6 +141,14 @@ public class ListenerService extends WearableListenerService {
             Bundle extras = new Bundle();
             extras.putString("features", "dpt"); //all dpt indv
             extras.putString("dpt", message); //appliances, bath, electrical, flooring
+
+            final String[] splitStringArray = message.split(" ");
+            String a = splitStringArray[0];
+            String b = splitStringArray[1];
+
+            extras.putString("dpt", a); //dana, jackson
+            extras.putString("message", b);
+
             intent.putExtras(extras);
             startService(intent);
         }else if ( messageEvent.getPath().equalsIgnoreCase( SEND_MESSAGE_INDV ) ){

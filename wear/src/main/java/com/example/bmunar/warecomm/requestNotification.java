@@ -15,7 +15,8 @@ public class requestNotification extends Activity {
     private static final String TAG = "requestNotification";
     private String features;
     private String dpt;
-    private String message;
+    private String message1;
+    private String message2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class requestNotification extends Activity {
         if (extras!=null) {
             features = intent.getStringExtra("features"); //all dpt indv
             dpt = intent.getStringExtra("dpt"); //appliances, bath, electrical, flooring
+            message1 = intent.getStringExtra("message");
             Log.d(TAG, features);
             Log.d(TAG, dpt);
         }
@@ -86,7 +88,7 @@ public class requestNotification extends Activity {
         Bundle extras = new Bundle();
         extras.putString("features", features); //all dpt indv
         extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
-        extras.putString("message", message); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
+        extras.putString("message", message2); //////////////////////////////MAKE MESSAGE EQUAL TO BUTTON
         intent.putExtras(extras);
         Log.d(TAG, features);
         Log.d(TAG, dpt);
