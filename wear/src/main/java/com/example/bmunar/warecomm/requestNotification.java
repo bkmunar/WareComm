@@ -98,12 +98,27 @@ public class requestNotification extends Activity {
         Log.d(TAG, dpt);
         startService(intent);
 
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, DepartmentList.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
     }
 
     public void touchCancel(View view){
         Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, DepartmentList.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        Intent intent = new Intent(this, ListenerService.class);
+        Bundle extras = new Bundle();
+        extras.putString("features", features); //all dpt indv
+        extras.putString("dpt", dpt); //appliances, bath, electrical, flooring
+        extras.putString("message", ((Button) view).getText().toString());
+        intent.putExtras(extras);
+        Log.d(TAG, features);
+        Log.d(TAG, dpt);
+        startService(intent);
+
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, DepartmentList.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
     }
 }
