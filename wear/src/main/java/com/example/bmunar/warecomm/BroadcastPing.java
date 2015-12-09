@@ -98,11 +98,10 @@ public class BroadcastPing extends Activity {
 
         startService(intent);
 
-//        //CODE TO FORCE DEMO FOR NOTIFICATION
-//        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, BroadcastNotification.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
+        Toast.makeText(this, "Tap", Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(this, BroadcastCodes.class);
+        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent2);
 
     }
 
